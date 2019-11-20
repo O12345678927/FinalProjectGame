@@ -6,12 +6,15 @@ public class PlayerScript : MonoBehaviour
 {
     //public var
     public float speed;
+    public float temporaryBulletSpeed;
     public Animator animator;
+    public Object devBullet;
 
     //private
     private Rigidbody2D rbody;
     private float horiz, vert;
     private int[,] inventory; // (x,y) x is for each weapons ammo, y is a boolean if the weapon has been picked up
+    private GameObject bulletObject;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +32,19 @@ public class PlayerScript : MonoBehaviour
     {
         IsMoving();
         CheckInput();
-        
+
+        //This is temporary
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //A bunch of temporary bullshit, this will be removed
+            bulletObject = (GameObject)Instantiate(Resources.Load("Prefabs/devbullet"),transform.position, transform.rotation);
+            Vector3 tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            tempVec.z = 0;
+            tempVec = Vector3.Normalize(tempVec);
+            bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(temporaryBulletSpeed * tempVec.x, temporaryBulletSpeed * tempVec.y); 
+            
+        }
+
     }
     // Update is called once per frame
     void FixedUpdate()
