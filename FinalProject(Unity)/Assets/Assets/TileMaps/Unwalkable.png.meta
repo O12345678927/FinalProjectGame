@@ -1,58 +1,67 @@
 fileFormatVersion: 2
-guid: 4f47d78d33417634a90a45b13394ddbf
+guid: e9fb5562e30800d48b184c775e270f59
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2800205990715083822
-    second: Effect Sprites_0
+      213: 6607737043185748384
+    second: Unwalkable_0
   - first:
-      213: 6874034730619504556
-    second: Effect Sprites_1
+      213: -5720410372220441321
+    second: Unwalkable_1
   - first:
-      213: -787472836939039501
-    second: Effect Sprites_2
+      213: -8577250771838988094
+    second: Unwalkable_2
   - first:
-      213: 7195645013628273923
-    second: Effect Sprites_3
+      213: -6024292336680025345
+    second: Unwalkable_3
   - first:
-      213: 6191469485230094441
-    second: Effect Sprites_4
+      213: 3637154537480896947
+    second: Unwalkable_4
   - first:
-      213: 4946239566602930246
-    second: Effect Sprites_5
+      213: -4487515383135087985
+    second: Unwalkable_5
   - first:
-      213: 1420614573888021624
-    second: Effect Sprites_6
+      213: 7660007737779580107
+    second: Unwalkable_6
   - first:
-      213: -1609609314929359015
-    second: Effect Sprites_7
+      213: 7314965334851624956
+    second: Unwalkable_7
   - first:
-      213: -6436226218091981769
-    second: Effect Sprites_8
+      213: -375978641090758701
+    second: Unwalkable_8
   - first:
-      213: 6031479186292884734
-    second: Effect Sprites_9
+      213: 7288354163108535346
+    second: Unwalkable_9
   - first:
-      213: 2111795598424741636
-    second: Effect Sprites_10
+      213: 7923749443093159930
+    second: Unwalkable_10
   - first:
-      213: 7394505945781128919
-    second: Effect Sprites_11
+      213: -7247151665989326242
+    second: Unwalkable_11
   - first:
-      213: 4527886544677598698
-    second: Effect Sprites_12
+      213: 8466555066338473146
+    second: Unwalkable_12
   - first:
-      213: 3339872139909979500
-    second: Effect Sprites_13
+      213: 8512366534239370409
+    second: Unwalkable_13
   - first:
-      213: 1947226940617807668
-    second: Effect Sprites_14
+      213: 2034762017460776362
+    second: Unwalkable_14
+  - first:
+      213: 7818926647157783227
+    second: Unwalkable_15
+  - first:
+      213: 9101805936426653683
+    second: Unwalkable_16
+  - first:
+      213: -1503138770784748138
+    second: Unwalkable_17
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
-    sRGBTexture: 1
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -90,7 +99,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -131,196 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Effect Sprites_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 985f9ff24a10e424181a0937a8300710
-      internalID: -2800205990715083822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c0f1a8ef621b884992d7f6f35f637aa
-      internalID: 6874034730619504556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8229c944caedc634f81219f6e3b1d868
-      internalID: -787472836939039501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 40ce20d495322b146a58d1597d0d69c4
-      internalID: 7195645013628273923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_4
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65b4103592c6d854ab0394c3a6e89a2f
-      internalID: 6191469485230094441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49474cebc9317f5418c6791a48082fbf
-      internalID: 4946239566602930246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3ea6b3d54d1fa04a95195e9a7a01305
-      internalID: 1420614573888021624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_7
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06fb820e33d8a2e458fd2642bfba53b7
-      internalID: -1609609314929359015
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_8
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2119e3ddf3b888f4b806bc457d665b70
-      internalID: -6436226218091981769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_9
+      name: Unwalkable_0
       rect:
         serializedVersion: 2
         x: 0
@@ -334,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da9ba6a685cd45c47bf829b4ec51f5d3
-      internalID: 6031479186292884734
+      spriteID: a7a28c2434c9fd94fb4f729b092e2d42
+      internalID: 6607737043185748384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_10
+      name: Unwalkable_1
       rect:
         serializedVersion: 2
         x: 16
@@ -355,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8440149c2e8284f48bc4abb7efbec6da
-      internalID: 2111795598424741636
+      spriteID: b7eb786bbd43d5d498b4a656e2db004c
+      internalID: -5720410372220441321
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_11
+      name: Unwalkable_2
       rect:
         serializedVersion: 2
         x: 32
@@ -376,14 +196,161 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b73573e94816adf4b984bcd6c5aefe3f
-      internalID: 7394505945781128919
+      spriteID: 7c1cb56efda87574fb1cad29e65a450e
+      internalID: -8577250771838988094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_12
+      name: Unwalkable_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd742c9cc1edb0641938b9871fb8c831
+      internalID: -6024292336680025345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aba414a26bd3a574894a9077ac3ac6fb
+      internalID: 3637154537480896947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38575e6bae815844aa547ec393c11daa
+      internalID: -4487515383135087985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8591cb34d535b384e8d7ad5a70e8c959
+      internalID: 7660007737779580107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614a2a8f75fce2b47b09b072f60e64ff
+      internalID: 7314965334851624956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6449d8897a165614885a9bed83140d8a
+      internalID: -375978641090758701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06103423612dcfc4d816536f5bebe94e
+      internalID: 7288354163108535346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_10
       rect:
         serializedVersion: 2
         x: 0
@@ -397,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02daa693f0c51c04eb4e06a9eb280b7f
-      internalID: 4527886544677598698
+      spriteID: 3e6a683172d95a14ab06ec299ae8ac1f
+      internalID: 7923749443093159930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_13
+      name: Unwalkable_11
       rect:
         serializedVersion: 2
         x: 16
@@ -418,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad2ee687714bf1048b34ff14e4302503
-      internalID: 3339872139909979500
+      spriteID: 77c9532133bddb24a9b87f51701296b9
+      internalID: -7247151665989326242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_14
+      name: Unwalkable_12
       rect:
         serializedVersion: 2
         x: 32
@@ -439,8 +406,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74cabfc95427d8b4a911544fcc5132f4
-      internalID: 1947226940617807668
+      spriteID: 8c0034737d40e01468fa6f59714c1342
+      internalID: 8466555066338473146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210ea0398e04efa4b9cdc05937529c59
+      internalID: 8512366534239370409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 071264cf84c705443bee47441a1ebc29
+      internalID: 2034762017460776362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 420b17f74e61c5a4baf7d9f23822e802
+      internalID: 7818926647157783227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_16
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e446074946ff3e049919235529cae0f8
+      internalID: 9101805936426653683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_17
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1fb7f3a2697be84a8bbf9f16fe545d3
+      internalID: -1503138770784748138
       vertices: []
       indices: 
       edges: []

@@ -8,9 +8,11 @@ public class BulletBehaviour : MonoBehaviour
     public float tracerSize = 0.10f;
     Rigidbody2D selfRigidBody;
     SpriteRenderer selfSpriteRenderer;
-    float physAbsVelocity;
-    float physDirection;
+    private float physAbsVelocity;
+    private float physDirection;
+    private ushort lifeTime;
     // Start is called before the first frame update
+    // use Physics.ignorecollision and tags/labels!!!!!!
     void Start()
     {
         if ((GetComponent(typeof(BoxCollider2D)) == null) || (GetComponent(typeof(Rigidbody2D)) == null)) {
@@ -27,8 +29,11 @@ public class BulletBehaviour : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D areaObject)
     {
-        Destroy(gameObject);
-        Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
+        if (areaObject.gameObject.name.ToString() != gameObject.gameObject.name.ToString())
+        {
+            Destroy(gameObject);
+            Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
+        }
     }
     void OnTriggerEnter2D(Collider2D areaObject)
     {
@@ -54,10 +59,18 @@ public class BulletBehaviour : MonoBehaviour
         selfRigidBody.SetRotation(physDirection * 180 / Mathf.PI);
         selfRigidBody.angularVelocity = 0;
 
-        selfSpriteRenderer.size = new Vector2(tracerSize + physAbsVelocity * 0.1f, tracerSize);
+        selfSpriteRenderer.size = new Vector2(tracerSize + physAbsVelocity * Time.deltaTime / 2, tracerSize);
+        lifeTime++;
+        if (lifeTime >= 255)
+        {
+            Destroy(gameObject);
+            //Kill after about 4.2 seconds
+        }
 
         //TODO: Add an artificial drag
         //selfRigidBody.velocity = new Vector2(physAbs);
+
+
     }
 
 }

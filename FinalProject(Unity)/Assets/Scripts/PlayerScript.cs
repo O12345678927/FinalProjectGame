@@ -11,11 +11,14 @@ public class PlayerScript : MonoBehaviour
     public Object devBullet;
 
     //private
+    private ushort weaponIndex = 0;
     private Rigidbody2D rbody;
     private float horiz, vert;
     private int[,] inventory; // (x,y) x is for each weapons ammo, y is a boolean if the weapon has been picked up
     private GameObject bulletObject;
-    
+    private float chamberTime = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,19 +34,89 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         IsMoving();
-        CheckInput();
+        CheckInput(ref weaponIndex);
 
         //This is temporary
-        if (Input.GetButtonDown("Fire1"))
+        
+        
+        switch (weaponIndex)
         {
-            //A bunch of temporary bullshit, this will be removed
-            bulletObject = (GameObject)Instantiate(Resources.Load("Prefabs/devbullet"),transform.position, transform.rotation);
-            Vector3 tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-            tempVec.z = 0;
-            tempVec = Vector3.Normalize(tempVec);
-            bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(temporaryBulletSpeed * tempVec.x, temporaryBulletSpeed * tempVec.y); 
-            
+            case 1:
+                if (Input.GetButtonDown("Fire1") && chamberTime<Time.deltaTime)
+                {
+                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
+                    chamberTime = 0.15f;
+                }
+                else
+                {
+                    if (chamberTime > Time.deltaTime)
+                    {
+                        chamberTime -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        chamberTime = 0;
+                    }
+                }
+                break;
+            case 2:
+                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
+                {
+                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
+                    chamberTime = 0.08f;
+                }
+                else
+                {
+                    if (chamberTime > Time.deltaTime)
+                    {
+                        chamberTime -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        chamberTime = 0;
+                    }
+                }
+                break;
+            case 3:
+                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
+                {
+                    for (int x = 0; x < 6; x++)
+                    {
+                        Debug.Log("Shotgun firing");
+                        FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
+                    }
+                    chamberTime = 0.8f;
+                }
+                else
+                {
+                    if (chamberTime > Time.deltaTime)
+                    {
+                        chamberTime -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        chamberTime = 0;
+                    }
+                }
+                break;
+            default:
+                //I dunno'      Punch maybe lol
+                break;
+
         }
+            
+        ////A bunch of temporary bullshit, this will be removed
+        //bulletObject = (GameObject)Instantiate(Resources.Load("Prefabs/devbullet"), transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
+        //Vector3 tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        //tempVec.z = 0;
+        //tempVec = Vector3.Normalize(tempVec);
+        //bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(temporaryBulletSpeed * tempVec.x, temporaryBulletSpeed * tempVec.y);
+
+        //Debug.Log($"Rotation: {transform.rotation.x},{transform.rotation.y},{transform.rotation.z},{transform.rotation.w}");
+        ////bulletObject.GetComponent<Rigidbody2D>().rotation =
+
+
+        
 
     }
     // Update is called once per frame
@@ -70,23 +143,62 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("isMoving", false);
     }
 
-    void CheckInput()
+    void CheckInput(ref ushort weaponIndex)
     {
         if (Input.GetKey(KeyCode.Alpha1))
         {
             animator.SetInteger("selectedWeapon", 0); //Unarmed
+            weaponIndex = 0; //returns Unarmed (0)
         }
         else if (Input.GetKey(KeyCode.Alpha2) && inventory[1,1] == 1)
         {
             animator.SetInteger("selectedWeapon", 1); //pistol
+            weaponIndex = 1; //returns Pistol (1)
         }
         else if (Input.GetKey(KeyCode.Alpha3) && inventory[2, 1] == 1)
         {
             animator.SetInteger("selectedWeapon", 2); //rifle
+            weaponIndex = 2; //returns Rifle (2)
         }
         else if (Input.GetKey(KeyCode.Alpha4) && inventory[3, 1] == 1)
         {
             animator.SetInteger("selectedWeapon", 3); //Shotgun
+            weaponIndex = 3; //returns Shotgun (3)
         }
+    }
+    void FireWeapon(ushort inputType, float velocity, Transform transform, float spread)
+    {
+        /*
+         * Types:
+         *      0 - Debug projectile
+         *      1 - Bullet nospread
+         *      2 - Bullet w/spread
+         *      3 - Pellet nospread
+         *      4 - Pellet w/spread
+         */
+        switch (inputType)
+        
+        {
+        
+            case 0:
+                //A bunch of temporary bullshit, this will be removed
+                bulletObject = (GameObject)Instantiate(Resources.Load("Prefabs/devbullet"), transform.position, transform.rotation * Quaternion.Euler(0, 0, -90 +spread));
+                Vector3 tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                float tempAngle = Mathf.Atan2(tempVec.y - transform.position.y, tempVec.x - transform.position.x);
+                bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(temporaryBulletSpeed * Mathf.Cos(tempAngle), temporaryBulletSpeed * Mathf.Sin(tempAngle));
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                Debug.Log("Error, invalid bullet type called!");
+                break;
+        }
+        
     }
 }

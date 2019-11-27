@@ -1,52 +1,58 @@
 fileFormatVersion: 2
-guid: 4f47d78d33417634a90a45b13394ddbf
+guid: f0271524ba95f22489fdc1d259abf04c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2800205990715083822
-    second: Effect Sprites_0
+      213: 3178791801905728931
+    second: Walkable_0
   - first:
-      213: 6874034730619504556
-    second: Effect Sprites_1
+      213: -4874522889529349488
+    second: Walkable_1
   - first:
-      213: -787472836939039501
-    second: Effect Sprites_2
+      213: 7797089818068505296
+    second: Walkable_2
   - first:
-      213: 7195645013628273923
-    second: Effect Sprites_3
+      213: 3654454278971744283
+    second: Walkable_3
   - first:
-      213: 6191469485230094441
-    second: Effect Sprites_4
+      213: 5849430080450077593
+    second: Walkable_4
   - first:
-      213: 4946239566602930246
-    second: Effect Sprites_5
+      213: -7749630800391585980
+    second: Walkable_5
   - first:
-      213: 1420614573888021624
-    second: Effect Sprites_6
+      213: -4470180216249570217
+    second: Walkable_6
   - first:
-      213: -1609609314929359015
-    second: Effect Sprites_7
+      213: 3673413836606125908
+    second: Walkable_7
   - first:
-      213: -6436226218091981769
-    second: Effect Sprites_8
+      213: -2501486867815125295
+    second: Walkable_8
   - first:
-      213: 6031479186292884734
-    second: Effect Sprites_9
+      213: 6996427781920168047
+    second: Walkable_9
   - first:
-      213: 2111795598424741636
-    second: Effect Sprites_10
+      213: 2301202724669302255
+    second: Walkable_10
   - first:
-      213: 7394505945781128919
-    second: Effect Sprites_11
+      213: 4376557426087645131
+    second: Walkable_11
   - first:
-      213: 4527886544677598698
-    second: Effect Sprites_12
+      213: 2946341789331429359
+    second: Walkable_12
   - first:
-      213: 3339872139909979500
-    second: Effect Sprites_13
+      213: 1233983631994959027
+    second: Walkable_13
   - first:
-      213: 1947226940617807668
-    second: Effect Sprites_14
+      213: -4290578652949971639
+    second: Walkable_14
+  - first:
+      213: 1243437087443917215
+    second: Walkable_15
+  - first:
+      213: -8195573139586191900
+    second: Walkable_16
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -90,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -131,196 +137,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Effect Sprites_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 985f9ff24a10e424181a0937a8300710
-      internalID: -2800205990715083822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c0f1a8ef621b884992d7f6f35f637aa
-      internalID: 6874034730619504556
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8229c944caedc634f81219f6e3b1d868
-      internalID: -787472836939039501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 40ce20d495322b146a58d1597d0d69c4
-      internalID: 7195645013628273923
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_4
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 65b4103592c6d854ab0394c3a6e89a2f
-      internalID: 6191469485230094441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 49474cebc9317f5418c6791a48082fbf
-      internalID: 4946239566602930246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3ea6b3d54d1fa04a95195e9a7a01305
-      internalID: 1420614573888021624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_7
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06fb820e33d8a2e458fd2642bfba53b7
-      internalID: -1609609314929359015
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_8
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2119e3ddf3b888f4b806bc457d665b70
-      internalID: -6436226218091981769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Effect Sprites_9
+      name: Walkable_0
       rect:
         serializedVersion: 2
         x: 0
@@ -334,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da9ba6a685cd45c47bf829b4ec51f5d3
-      internalID: 6031479186292884734
+      spriteID: 51cfe538ff661ac4c90d3618822e9f69
+      internalID: 3178791801905728931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_10
+      name: Walkable_1
       rect:
         serializedVersion: 2
         x: 16
@@ -355,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8440149c2e8284f48bc4abb7efbec6da
-      internalID: 2111795598424741636
+      spriteID: 1a6197f8a9522d24cad979aeddb8bd7b
+      internalID: -4874522889529349488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_11
+      name: Walkable_2
       rect:
         serializedVersion: 2
         x: 32
@@ -376,14 +193,161 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b73573e94816adf4b984bcd6c5aefe3f
-      internalID: 7394505945781128919
+      spriteID: f1b481b6821df9f4c99c1f9094e6dd85
+      internalID: 7797089818068505296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_12
+      name: Walkable_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45350712bf14b9645a1962f6361d42f1
+      internalID: 3654454278971744283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4b71d12cefda6048afe8f54ab65396e
+      internalID: 5849430080450077593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b0d1357f6673240959a8d61ba65135
+      internalID: -7749630800391585980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e2df47c0d10c547b82e74442f2d922
+      internalID: -4470180216249570217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70ba52172734b734590434dc46d63377
+      internalID: 3673413836606125908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fef12e587392e546a59b6f2f4571f94
+      internalID: -2501486867815125295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 306adeee58653134aa0997533dd7b641
+      internalID: 6996427781920168047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_10
       rect:
         serializedVersion: 2
         x: 0
@@ -397,14 +361,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02daa693f0c51c04eb4e06a9eb280b7f
-      internalID: 4527886544677598698
+      spriteID: de9bf6df26ac1d84493924f90c4b8e33
+      internalID: 2301202724669302255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_13
+      name: Walkable_11
       rect:
         serializedVersion: 2
         x: 16
@@ -418,14 +382,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad2ee687714bf1048b34ff14e4302503
-      internalID: 3339872139909979500
+      spriteID: eaf5899e13c194641bb9e27fcad18302
+      internalID: 4376557426087645131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Effect Sprites_14
+      name: Walkable_12
       rect:
         serializedVersion: 2
         x: 32
@@ -439,8 +403,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74cabfc95427d8b4a911544fcc5132f4
-      internalID: 1947226940617807668
+      spriteID: 82f8135f834459d438366018c8179149
+      internalID: 2946341789331429359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f4a99ee9f1dc3643ae54d25a7d21b82
+      internalID: 1233983631994959027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9d779187298194ab456cfe2e69dcc6
+      internalID: -4290578652949971639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42aa6c3c64d7106499c89809d9bd2c5c
+      internalID: 1243437087443917215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkable_16
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6f39541e1e9b794e94de1cbe3c915e1
+      internalID: -8195573139586191900
       vertices: []
       indices: 
       edges: []
