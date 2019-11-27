@@ -63,7 +63,7 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
                 {
                     FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
-                    chamberTime = 0.08f;
+                    chamberTime = 0.12f;
                 }
                 else
                 {
@@ -82,10 +82,9 @@ public class PlayerScript : MonoBehaviour
                 {
                     for (int x = 0; x < 6; x++)
                     {
-                        Debug.Log("Shotgun firing");
                         FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
                     }
-                    chamberTime = 0.8f;
+                    chamberTime = 1.2f;
                 }
                 else
                 {
@@ -182,9 +181,9 @@ public class PlayerScript : MonoBehaviour
         
             case 0:
                 //A bunch of temporary bullshit, this will be removed
-                bulletObject = (GameObject)Instantiate(Resources.Load("Prefabs/devbullet"), transform.position, transform.rotation * Quaternion.Euler(0, 0, -90 +spread));
+                bulletObject = (GameObject)Instantiate(devBullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
                 Vector3 tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                float tempAngle = Mathf.Atan2(tempVec.y - transform.position.y, tempVec.x - transform.position.x);
+                float tempAngle = Mathf.Atan2(tempVec.y - transform.position.y, tempVec.x - transform.position.x) + spread;
                 bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(temporaryBulletSpeed * Mathf.Cos(tempAngle), temporaryBulletSpeed * Mathf.Sin(tempAngle));
                 break;
             case 1:

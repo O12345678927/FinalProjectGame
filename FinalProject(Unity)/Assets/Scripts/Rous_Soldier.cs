@@ -57,7 +57,7 @@ public class Rous_Soldier : MonoBehaviour
     void CheckForPlayer()
     {
         float distance = Vector3.Distance(transform.position, playerPos.position);
-        if (distance < 4)
+        if (distance < 16)
             rousState = 1;
         else
         {
@@ -77,7 +77,7 @@ public class Rous_Soldier : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Colliding");
+        //This shouldn't exist, it can be handled in the bullet script
         if (other.gameObject.CompareTag("Projectile"))
         {            
             Destroy(other.gameObject);

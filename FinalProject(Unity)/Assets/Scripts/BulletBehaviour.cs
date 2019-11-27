@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    const float DRAG_COEF = 0.97f;
-    public float tracerSize = 0.10f;
+    public float DRAG_COEF = 0.97f;
+    public float tracerSize = 0.125f;
+
     Rigidbody2D selfRigidBody;
     SpriteRenderer selfSpriteRenderer;
+
     private float physAbsVelocity;
     private float physDirection;
     private ushort lifeTime;
+    
     // Start is called before the first frame update
-    // use Physics.ignorecollision and tags/labels!!!!!!
+    // use ignorecollision and tags/labels!!!!!!
     void Start()
     {
         if ((GetComponent(typeof(BoxCollider2D)) == null) || (GetComponent(typeof(Rigidbody2D)) == null)) {
@@ -26,10 +29,16 @@ public class BulletBehaviour : MonoBehaviour
             //If the sprite renderer doesn't exist then I don't even care anymore, I'm gonna assign this without checking anyways
             selfSpriteRenderer = GetComponent<SpriteRenderer>();
         }
+        foreach (GameObject curObject in GameObject.FindGameObjectsWithTag("Projectile"))
+        {
+            //Ignore physics for each
+            Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), curObject.GetComponent<BoxCollider2D>());
+            Debug.Log(curObject.gameObject.name);
+        }
     }
     void OnCollisionEnter2D(Collision2D areaObject)
     {
-        if (areaObject.gameObject.name.ToString() != gameObject.gameObject.name.ToString())
+        if (!areaObject.gameObject.CompareTag("Player") && !areaObject.gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
@@ -38,7 +47,7 @@ public class BulletBehaviour : MonoBehaviour
     void OnTriggerEnter2D(Collider2D areaObject)
     {
         //Check if it's the player, update the game in the future to not only look for the player entity, for example: bullets can hit other bullets!
-        if (areaObject.name.ToString() != "Player")
+        if (!areaObject.CompareTag("Player") && !areaObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the trigger {areaObject.gameObject.name.ToString()}!");
@@ -59,7 +68,9 @@ public class BulletBehaviour : MonoBehaviour
         selfRigidBody.SetRotation(physDirection * 180 / Mathf.PI);
         selfRigidBody.angularVelocity = 0;
 
-        selfSpriteRenderer.size = new Vector2(tracerSize + physAbsVelocity * Time.deltaTime / 2, tracerSize);
+
+        selfSpriteRenderer.size = new Vector2(tracerSize * 4 + physAbsVelocity * Time.deltaTime, tracerSize);
+
         lifeTime++;
         if (lifeTime >= 255)
         {
