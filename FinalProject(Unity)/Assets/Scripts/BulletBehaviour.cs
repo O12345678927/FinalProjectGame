@@ -43,6 +43,11 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
         }
+        if (areaObject.gameObject.CompareTag("Enemy")) // A enemy has been hit
+        {
+            GameObject enemy = areaObject.gameObject;
+            enemy.GetComponent<Rous_Soldier>().HitByBullet(20); // value is amount of damage to be applied, Im not really sure how to determine what that value will be so its 20 for now
+        }
     }
     void OnTriggerEnter2D(Collider2D areaObject)
     {

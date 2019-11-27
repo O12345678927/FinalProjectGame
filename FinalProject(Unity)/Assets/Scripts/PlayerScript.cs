@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
             case 1:
                 if (Input.GetButtonDown("Fire1") && chamberTime<Time.deltaTime)
                 {
-                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
+                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));
                     chamberTime = 0.15f;
                 }
                 else
@@ -56,36 +56,30 @@ public class PlayerScript : MonoBehaviour
             case 2:
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
                 {
-                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
+                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));
                     chamberTime = 0.12f;
                 }
                 else
                 {
                     if (chamberTime > Time.deltaTime)
                         chamberTime -= Time.deltaTime;                    
-                    else
+                    else                    
                         chamberTime = 0;                    
                 }
                 break;
             case 3:
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
                 {
-                    for (int x = 0; x < 6; x++)
-                    {
-                        FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));
-                    }
+                    for (int x = 0; x < 6; x++)                    
+                        FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));                    
                     chamberTime = 1.2f;
                 }
                 else
                 {
-                    if (chamberTime > Time.deltaTime)
-                    {
-                        chamberTime -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        chamberTime = 0;
-                    }
+                    if (chamberTime > Time.deltaTime)                    
+                        chamberTime -= Time.deltaTime;                    
+                    else                    
+                        chamberTime = 0;                    
                 }
                 break;
             default:
@@ -113,9 +107,10 @@ public class PlayerScript : MonoBehaviour
     {
         horiz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
-
+        Vector2 playerDir = new Vector2(horiz, vert);
+        playerDir.Normalize();
         ChangeDirection();
-        rbody.velocity = new Vector2(horiz * speed, vert * speed);
+        rbody.velocity = playerDir * speed;
     }
     void ChangeDirection() // changes the angle of the player to face the mouse
     {
