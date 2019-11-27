@@ -35,10 +35,8 @@ public class PlayerScript : MonoBehaviour
     {
         IsMoving();
         CheckInput(ref weaponIndex);
-
-        //This is temporary
         
-        
+        //This is temporary       
         switch (weaponIndex)
         {
             case 1:
@@ -50,13 +48,9 @@ public class PlayerScript : MonoBehaviour
                 else
                 {
                     if (chamberTime > Time.deltaTime)
-                    {
-                        chamberTime -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        chamberTime = 0;
-                    }
+                        chamberTime -= Time.deltaTime;                    
+                    else                    
+                        chamberTime = 0;                    
                 }
                 break;
             case 2:
@@ -68,13 +62,9 @@ public class PlayerScript : MonoBehaviour
                 else
                 {
                     if (chamberTime > Time.deltaTime)
-                    {
-                        chamberTime -= Time.deltaTime;
-                    }
+                        chamberTime -= Time.deltaTime;                    
                     else
-                    {
-                        chamberTime = 0;
-                    }
+                        chamberTime = 0;                    
                 }
                 break;
             case 3:
@@ -82,7 +72,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     for (int x = 0; x < 6; x++)
                     {
-                        FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-1.0f, 1.0f));
+                        FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));
                     }
                     chamberTime = 1.2f;
                 }
@@ -175,10 +165,8 @@ public class PlayerScript : MonoBehaviour
          *      3 - Pellet nospread
          *      4 - Pellet w/spread
          */
-        switch (inputType)
-        
-        {
-        
+        switch (inputType)        
+        {        
             case 0:
                 //A bunch of temporary bullshit, this will be removed
                 bulletObject = (GameObject)Instantiate(devBullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
