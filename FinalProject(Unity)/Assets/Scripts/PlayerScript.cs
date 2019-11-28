@@ -6,10 +6,13 @@ public class PlayerScript : MonoBehaviour
 {
     //public var
     public float speed;
-    public float temporaryBulletSpeed;
     public Animator animator;
     public Object devBullet;
     public GameObject bloodEffects;
+
+    public Sprite projectileSpritePisol;
+    public Sprite projectileSpriteRifle;
+    public Sprite projectileSpriteShotgun;
 
     //private
     private ushort weaponIndex = 0;
@@ -19,8 +22,12 @@ public class PlayerScript : MonoBehaviour
     private GameObject bulletObject;
     private float chamberTime = 0;
 
+    readonly float[][] weaponDataArray = {    new float[] { 0, 0, 0, 0 },        //fists
+                                                new float[] { 40, 15, 0.97f },      //pistol
+                                                new float[] { 45, 30, 0.99f },      //rifle
+                                                new float[] { 100, 7.5f, 0.85f }};    //shotgun
+                                                //{velocity, damage, spread, coef}
 
-    // Start is called before the first frame update
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
@@ -35,15 +42,13 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         IsMoving();
-        CheckInput(ref weaponIndex);
-        
-        //This is temporary       
+        CheckInput(ref weaponIndex)    
         switch (weaponIndex)
         {
             case 1:
                 if (Input.GetButtonDown("Fire1") && chamberTime<Time.deltaTime)
                 {
-                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.05f, 0.05f));
+                    FireWeapon(1, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[1]);
                     chamberTime = 0.15f;
                 }
                 else
@@ -57,7 +62,7 @@ public class PlayerScript : MonoBehaviour
             case 2:
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
                 {
-                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.1f, 0.1f));
+                    FireWeapon(2, transform, Random.Range(-0.1f, 0.1f), weaponDataArray[2]);
                     chamberTime = 0.12f;
                 }
                 else
@@ -71,8 +76,8 @@ public class PlayerScript : MonoBehaviour
             case 3:
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
                 {
-                    for (int x = 0; x < 6; x++)                    
-                        FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));                    
+                    for (int x = 0; x < 6; x++)
+                        FireWeapon(3, transform, Random.Range(-0.03f, 0.03f), weaponDataArray[3]);                    
                     chamberTime = 1.2f;
                 }
                 else
@@ -88,22 +93,7 @@ public class PlayerScript : MonoBehaviour
                 break;
 
         }
-            
-        ////A bunch of temporary bullshit, this will be removed
-        //bulletObject = (GameObject)Instantiate(Resources.Load("Prefabs/devbullet"), transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
-        //Vector3 tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-        //tempVec.z = 0;
-        //tempVec = Vector3.Normalize(tempVec);
-        //bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(temporaryBulletSpeed * tempVec.x, temporaryBulletSpeed * tempVec.y);
-
-        //Debug.Log($"Rotation: {transform.rotation.x},{transform.rotation.y},{transform.rotation.z},{transform.rotation.w}");
-        ////bulletObject.GetComponent<Rigidbody2D>().rotation =
-
-
-        
-
     }
-    // Update is called once per frame
     void FixedUpdate()
     {
         horiz = Input.GetAxis("Horizontal");
@@ -127,7 +117,6 @@ public class PlayerScript : MonoBehaviour
         else
             animator.SetBool("isMoving", false);
     }
-
     void CheckInput(ref ushort weaponIndex)
     {
         if (Input.GetKey(KeyCode.Alpha1))
@@ -151,32 +140,41 @@ public class PlayerScript : MonoBehaviour
             weaponIndex = 3; //returns Shotgun (3)
         }
     }
-    void FireWeapon(ushort inputType, float velocity, Transform transform, float spread)
+    void InitializeBullet(GameObject bulletObject, Transform transform, float spread, float[] weaponDataArray)
+    {
+        Vector3 tempVec;
+        tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        float tempAngle = Mathf.Atan2(tempVec.y - transform.position.y, tempVec.x - transform.position.x) + spread;
+        bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(weaponDataArray[0] * Mathf.Cos(tempAngle), weaponDataArray[0] * Mathf.Sin(tempAngle));
+        bulletObject.GetComponent<BulletBehaviour>().Initialize(weaponDataArray);
+    }
+    void FireWeapon(ushort inputType, Transform transform, float spread, float[] weaponDataArray)
     {
         /*
          * Types:
          *      0 - Debug projectile
-         *      1 - Bullet nospread
-         *      2 - Bullet w/spread
-         *      3 - Pellet nospread
-         *      4 - Pellet w/spread
+         *      1 - Bullet (Pistol)
+         *      2 - Bullet (Rifle)
+         *      3 - Pellet (Shotgun)
          */
+        bulletObject = (GameObject)Instantiate(devBullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
+        InitializeBullet(bulletObject, transform, spread, weaponDataArray);
         switch (inputType)        
-        {        
+        {
             case 0:
                 //A bunch of temporary bullshit, this will be removed
                 bulletObject = (GameObject)Instantiate(devBullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
-                Vector3 tempVec = (Camera.main.ScreenToWorldPoint(Input.mousePosition));
-                float tempAngle = Mathf.Atan2(tempVec.y - transform.position.y, tempVec.x - transform.position.x) + spread;
-                bulletObject.GetComponent<Rigidbody2D>().velocity = new Vector2(temporaryBulletSpeed * Mathf.Cos(tempAngle), temporaryBulletSpeed * Mathf.Sin(tempAngle));
+                InitializeBullet(bulletObject, transform, spread, weaponDataArray);
                 break;
             case 1:
+                bulletObject.GetComponent<SpriteRenderer>().sprite = projectileSpritePisol;
                 break;
             case 2:
+                bulletObject.GetComponent<SpriteRenderer>().sprite = projectileSpriteRifle;
                 break;
             case 3:
-                break;
-            case 4:
+                bulletObject.GetComponent<BulletBehaviour>().UseTurbulence(true, spread);
+                bulletObject.GetComponent<SpriteRenderer>().sprite = projectileSpriteShotgun;
                 break;
             default:
                 Debug.Log("Error, invalid bullet type called!");

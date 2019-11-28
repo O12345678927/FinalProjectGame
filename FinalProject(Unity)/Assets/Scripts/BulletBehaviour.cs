@@ -4,18 +4,36 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    public float DRAG_COEF = 0.97f;
+    public float dragCoef = 0.97f;
     public float tracerSize = 0.125f;
+    public float initialDamage = 10;
+
+    const float TURBULENCE_COEF = 0.5f;
 
     Rigidbody2D selfRigidBody;
     SpriteRenderer selfSpriteRenderer;
 
     private float physAbsVelocity;
     private float physDirection;
+    private bool useTurbulence = false;
+    private float turbulenceRate;
+    private float turbulenceVelocity;
+
     private ushort lifeTime;
-    
+
     // Start is called before the first frame update
     // use ignorecollision and tags/labels!!!!!!
+    public void Initialize(float[] bulletData)
+    {
+        initialDamage = bulletData[1];
+        dragCoef = bulletData[2];
+    }
+    public void UseTurbulence(bool condition, float rate)
+    {
+        useTurbulence = condition;
+        turbulenceRate = rate*TURBULENCE_COEF;
+        turbulenceVelocity = 0;
+    }
     void Start()
     {
         if ((GetComponent(typeof(BoxCollider2D)) == null) || (GetComponent(typeof(Rigidbody2D)) == null)) {
@@ -25,6 +43,7 @@ public class BulletBehaviour : MonoBehaviour
         else
         {
             selfRigidBody = GetComponent<Rigidbody2D>();
+            GetComponent<BoxCollider2D>().size = new Vector2(tracerSize, tracerSize);
 
             //If the sprite renderer doesn't exist then I don't even care anymore, I'm gonna assign this without checking anyways
             selfSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -32,6 +51,8 @@ public class BulletBehaviour : MonoBehaviour
         foreach (GameObject curObject in GameObject.FindGameObjectsWithTag("Projectile"))
         {
             //Ignore physics for each
+            //THIS IS LAGGY! find another way to do collision like this
+            //Try IgnoreLayerCollision later!
             Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), curObject.GetComponent<BoxCollider2D>());
             Debug.Log(curObject.gameObject.name);
         }
@@ -43,10 +64,10 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
         }
-        if (areaObject.gameObject.CompareTag("Enemy")) // A enemy has been hit
+        if (areaObject.gameObject.CompareTag("Enemy")) // An enemy has been hit
         {
             GameObject enemy = areaObject.gameObject;
-            enemy.GetComponent<Rous_Soldier>().HitByBullet(20); // value is amount of damage to be applied, Im not really sure how to determine what that value will be so its 20 for now
+            enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage);
         }
     }
     void OnTriggerEnter2D(Collider2D areaObject)
@@ -67,20 +88,35 @@ public class BulletBehaviour : MonoBehaviour
     {
         //Get the direction and magnitude
         physAbsVelocity = Mathf.Sqrt(Mathf.Pow(selfRigidBody.velocity.x, 2) + Mathf.Pow(selfRigidBody.velocity.y, 2));
-        physDirection = Mathf.Atan2(selfRigidBody.velocity.y, selfRigidBody.velocity.x);
-        
+
+        if (!useTurbulence)
+        {
+            physDirection = Mathf.Atan2(selfRigidBody.velocity.y, selfRigidBody.velocity.x);
+            selfRigidBody.velocity = selfRigidBody.velocity * dragCoef;
+        }
+        else
+        {
+            turbulenceVelocity += turbulenceRate;
+            physDirection = Mathf.Atan2(selfRigidBody.velocity.y, selfRigidBody.velocity.x)+ turbulenceVelocity;
+            selfRigidBody.velocity = new Vector2(Mathf.Cos(physDirection) * physAbsVelocity * dragCoef, Mathf.Sin(physDirection) * physAbsVelocity * dragCoef);
+        }
+
         //Set angle to direction
         selfRigidBody.SetRotation(physDirection * 180 / Mathf.PI);
         selfRigidBody.angularVelocity = 0;
 
-
-        selfSpriteRenderer.size = new Vector2(tracerSize * 4 + physAbsVelocity * Time.deltaTime, tracerSize);
+        //Set size of sprite (Will be changed with the addition of a tracer effect child)
+        selfSpriteRenderer.size = new Vector2(tracerSize + (physAbsVelocity * Time.deltaTime), tracerSize);
 
         lifeTime++;
         if (lifeTime >= 255)
         {
             Destroy(gameObject);
-            //Kill after about 4.2 seconds
+            //Kill after about 4 to 5 seconds
+        }else if (physAbsVelocity < 1)
+        {
+            Destroy(gameObject);
+            //Kill if too slow
         }
 
         //TODO: Add an artificial drag
