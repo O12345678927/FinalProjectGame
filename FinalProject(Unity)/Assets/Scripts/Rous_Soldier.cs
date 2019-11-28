@@ -9,6 +9,7 @@ public class Rous_Soldier : MonoBehaviour
     public Transform playerPos;
     public Animator animator;
     public int rousState;
+    public GameObject[] blood;
 
     //private var    
     private Rigidbody2D rbody;
@@ -85,7 +86,7 @@ public class Rous_Soldier : MonoBehaviour
     }
     public void HitByBullet(float damage)
     {
-        Debug.Log("ROus has been hit");
+        Instantiate(blood[2], transform.position, transform.rotation);
         health -= damage;
         detectionRange = 11;
     }

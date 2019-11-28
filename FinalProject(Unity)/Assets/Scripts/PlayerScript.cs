@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     public float temporaryBulletSpeed;
     public Animator animator;
     public Object devBullet;
+    public GameObject bloodEffects;
 
     //private
     private ushort weaponIndex = 0;
@@ -42,7 +43,7 @@ public class PlayerScript : MonoBehaviour
             case 1:
                 if (Input.GetButtonDown("Fire1") && chamberTime<Time.deltaTime)
                 {
-                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));
+                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.05f, 0.05f));
                     chamberTime = 0.15f;
                 }
                 else
@@ -56,7 +57,7 @@ public class PlayerScript : MonoBehaviour
             case 2:
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
                 {
-                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.2f, 0.2f));
+                    FireWeapon(0, temporaryBulletSpeed, transform, Random.Range(-0.1f, 0.1f));
                     chamberTime = 0.12f;
                 }
                 else
