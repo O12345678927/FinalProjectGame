@@ -113,16 +113,12 @@ public class BulletBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
             //Kill after about 4 to 5 seconds
-        }else if (physAbsVelocity < 1)
+        }
+        else if (physAbsVelocity < 1)
         {
             Destroy(gameObject);
             //Kill if too slow
         }
-
-        //TODO: Add an artificial drag
-        //selfRigidBody.velocity = new Vector2(physAbs);
-
-
     }
 
 }

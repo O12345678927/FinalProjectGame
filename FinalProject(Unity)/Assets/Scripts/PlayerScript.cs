@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         IsMoving();
-        CheckInput(ref weaponIndex)    
+        CheckInput(ref weaponIndex);    
         switch (weaponIndex)
         {
             case 1:
@@ -101,7 +101,7 @@ public class PlayerScript : MonoBehaviour
         Vector2 playerDir = new Vector2(horiz, vert);
         playerDir.Normalize();
         ChangeDirection();
-        rbody.velocity = playerDir * speed;
+        rbody.AddForce(playerDir * speed);
     }
     void ChangeDirection() // changes the angle of the player to face the mouse
     {

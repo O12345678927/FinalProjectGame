@@ -38,6 +38,24 @@ TextureImporter:
   - first:
       213: 977951748182238438
     second: Fauna_4
+  - first:
+      213: -2435751063313300091
+    second: Fauna_1
+  - first:
+      213: -2845554758967926541
+    second: Fauna_2
+  - first:
+      213: -7519130814018043822
+    second: Fauna_3
+  - first:
+      213: 977951748182238438
+    second: Fauna_4
+  - first:
+      213: 733034742272440982
+    second: Rous_Dead
+  - first:
+      213: 4804825636008526784
+    second: Fauna_Dead
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -126,7 +144,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -136,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7c47e48af651e741a49889280a98aea
+      spriteID: cb847e0a5f9ad2f43a31394962793dbf
       internalID: 361635475173081019
       vertices: []
       indices: 
@@ -147,7 +165,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -157,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b2f4ffd33ccf7e4fba3ae9797b108d2
+      spriteID: d028e3cd7fe8e7f4ca439593ebe74ef9
       internalID: -5661889659933321331
       vertices: []
       indices: 
@@ -168,7 +186,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -178,7 +196,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 700d08b768096ea419640af94e473552
+      spriteID: 185b49a41a90fb5409ca6b8f5a6c5a81
       internalID: 5654678556935254359
       vertices: []
       indices: 
@@ -189,7 +207,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -199,7 +217,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a20a89fe1d830f84e86f38eb9cb8d212
+      spriteID: 470f43430dab65c44a2cffc6073f16a2
       internalID: -5356620420443621051
       vertices: []
       indices: 
@@ -210,6 +228,90 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 708fd1c4ea854fa4c9e6a0404453cfef
+      internalID: -8807215722197320867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rous_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47715ef75b1071b458a01f91d69287de
+      internalID: 8033368034416655649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rous_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a335e9623f596684da263f9c251eeb05
+      internalID: -1091284246608023373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rous_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59fadc6691aa51348941a0b9a47e2aab
+      internalID: -1287727343271789170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fauna_1
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -220,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d2025e2ee2b21a438ae795d20fd4799
-      internalID: -8807215722197320867
+      spriteID: d56e8b50421abf04bba6a69dc2d99a02
+      internalID: -2435751063313300091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rous_5
+      name: Fauna_2
       rect:
         serializedVersion: 2
         x: 32
@@ -241,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da46752a1c55ca449b48933ebfd7a962
-      internalID: 8033368034416655649
+      spriteID: 8c977e78c34285942a315d8adfc2e7a2
+      internalID: -2845554758967926541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rous_6
+      name: Fauna_3
       rect:
         serializedVersion: 2
         x: 64
@@ -262,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc6d1a7c80c8fe44ca9cd50deffd9eb4
-      internalID: -1091284246608023373
+      spriteID: f5ce6e4f427dc3c4aad993248b923754
+      internalID: -7519130814018043822
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rous_7
+      name: Fauna_4
       rect:
         serializedVersion: 2
         x: 96
@@ -283,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54a14240046a431408547e31816c3e42
-      internalID: -1287727343271789170
+      spriteID: 2d67e7e7f2540b44b9cd5544efe21756
+      internalID: 977951748182238438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fauna_1
+      name: Rous_Dead
       rect:
         serializedVersion: 2
         x: 0
@@ -304,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 781aff306d265f7428c5e9f697ed2f6d
-      internalID: -2435751063313300091
+      spriteID: bad2d42d0823d1c4fb82b2a86d68da07
+      internalID: 733034742272440982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fauna_2
+      name: Fauna_Dead
       rect:
         serializedVersion: 2
         x: 32
@@ -325,50 +427,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1abcdcba3dee924d9d6c1383ee015c6
-      internalID: -2845554758967926541
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fauna_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 41017f175c13a4442b03f62c740207c1
-      internalID: -7519130814018043822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fauna_4
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0264ba273e0a7e469f82513a60a9551
-      internalID: 977951748182238438
+      spriteID: 058914be75791204081864168671fbe1
+      internalID: 4804825636008526784
       vertices: []
       indices: 
       edges: []

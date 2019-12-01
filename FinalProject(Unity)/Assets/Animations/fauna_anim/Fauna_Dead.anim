@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rous_FootSoldier_Dead
+  m_Name: Fauna_Dead
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 733034742272440982, guid: 822a2eb38e2756147867196d6f427dd4,
+      value: {fileID: 4804825636008526784, guid: 822a2eb38e2756147867196d6f427dd4,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -41,7 +41,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 733034742272440982, guid: 822a2eb38e2756147867196d6f427dd4, type: 3}
+    - {fileID: 4804825636008526784, guid: 822a2eb38e2756147867196d6f427dd4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

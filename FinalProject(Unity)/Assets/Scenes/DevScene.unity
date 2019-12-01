@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5f68d6d5218a7408bcdbaed6e254fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.4
-  turningSpeed: 4
+  speed: 28
+  turningSpeed: 7
   playerPos: {fileID: 160652505}
   animator: {fileID: 1183182719}
   rousState: 0
@@ -369,7 +369,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 15
   m_LinearDrag: 10
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -604,7 +604,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4527886544677598698, guid: 4f47d78d33417634a90a45b13394ddbf,
+  m_Sprite: {fileID: -3868812660829053132, guid: 0ea7c7a7f79eef446b1029a03415287a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -660,8 +660,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 420
-  m_LinearDrag: 5
+  m_Mass: 10
+  m_LinearDrag: 10
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -681,17 +681,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a1ef178bb09f94ba01f4d0446f52ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 600
   animator: {fileID: 1898340857}
   devBullet: {fileID: 3933162190717492874, guid: 8a1188ce9fd9eeb46ae3fa2d8f95cda0,
     type: 3}
   bloodEffects: {fileID: 0}
-  projectileSpritePisol: {fileID: 3339872139909979500, guid: 4f47d78d33417634a90a45b13394ddbf,
-    type: 3}
-  projectileSpriteRifle: {fileID: 4527886544677598698, guid: 4f47d78d33417634a90a45b13394ddbf,
-    type: 3}
-  projectileSpriteShotgun: {fileID: 1947226940617807668, guid: 4f47d78d33417634a90a45b13394ddbf,
-    type: 3}
+  projectileSpritePisol: {fileID: 0}
+  projectileSpriteRifle: {fileID: 0}
+  projectileSpriteShotgun: {fileID: 0}
 --- !u!114 &1898340863
 MonoBehaviour:
   m_ObjectHideFlags: 0
