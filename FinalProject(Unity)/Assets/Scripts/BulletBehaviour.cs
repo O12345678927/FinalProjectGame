@@ -6,9 +6,9 @@ public class BulletBehaviour : MonoBehaviour
 {
     public float dragCoef = 0.97f;
     public float tracerSize = 0.125f;
-    public float initialDamage = 10;
 
-    const float TURBULENCE_COEF = 0.5f;
+
+    const float TURBULENCE_COEF = 0.7f;
 
     Rigidbody2D selfRigidBody;
     SpriteRenderer selfSpriteRenderer;
@@ -18,6 +18,8 @@ public class BulletBehaviour : MonoBehaviour
     private bool useTurbulence = false;
     private float turbulenceRate;
     private float turbulenceVelocity;
+    private float initialVelocity;
+    private float initialDamage;
 
     private ushort lifeTime;
 
@@ -25,6 +27,7 @@ public class BulletBehaviour : MonoBehaviour
     // use ignorecollision and tags/labels!!!!!!
     public void Initialize(float[] bulletData)
     {
+        initialVelocity = bulletData[0];
         initialDamage = bulletData[1];
         dragCoef = bulletData[2];
     }
@@ -48,18 +51,19 @@ public class BulletBehaviour : MonoBehaviour
             //If the sprite renderer doesn't exist then I don't even care anymore, I'm gonna assign this without checking anyways
             selfSpriteRenderer = GetComponent<SpriteRenderer>();
         }
-        foreach (GameObject curObject in GameObject.FindGameObjectsWithTag("Projectile"))
-        {
+        //foreach (GameObject curObject in GameObject.FindGameObjectsWithTag("Projectile"))
+        //{
             //Ignore physics for each
             //THIS IS LAGGY! find another way to do collision like this
+            //Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), curObject.GetComponent<BoxCollider2D>());
+            //Debug.Log(curObject.gameObject.name);
             //Try IgnoreLayerCollision later!
-            Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), curObject.GetComponent<BoxCollider2D>());
-            Debug.Log(curObject.gameObject.name);
-        }
+            //IgnoreLayerCollision will be put in the playerscript
+        //}
     }
     void OnCollisionEnter2D(Collision2D areaObject)
     {
-        if (!areaObject.gameObject.CompareTag("Player") && !areaObject.gameObject.CompareTag("Projectile"))
+        if (!areaObject.gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
@@ -67,8 +71,17 @@ public class BulletBehaviour : MonoBehaviour
         if (areaObject.gameObject.CompareTag("Enemy")) // An enemy has been hit
         {
             GameObject enemy = areaObject.gameObject;
-            enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage);
+            if (!(enemy.GetComponent(typeof(Rous_Soldier)) == null))
+            {
+                enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
+                Debug.Log($"Damage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
+            }   //else if (!(enemy.GetComponent(typeof(FAUNA)) == null))
+            //{
+            //    enemy.GetComponent<FAUNA>().HitByBullet(initialDamage);
+            //}
         }
+
+        
     }
     void OnTriggerEnter2D(Collider2D areaObject)
     {
@@ -106,7 +119,7 @@ public class BulletBehaviour : MonoBehaviour
         selfRigidBody.angularVelocity = 0;
 
         //Set size of sprite (Will be changed with the addition of a tracer effect child)
-        selfSpriteRenderer.size = new Vector2(tracerSize + (physAbsVelocity * Time.deltaTime), tracerSize);
+        selfSpriteRenderer.size = new Vector2(tracerSize + (physAbsVelocity * Time.deltaTime)/2, tracerSize);
 
         lifeTime++;
         if (lifeTime >= 255)

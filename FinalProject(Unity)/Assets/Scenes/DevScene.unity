@@ -686,9 +686,12 @@ MonoBehaviour:
   devBullet: {fileID: 3933162190717492874, guid: 8a1188ce9fd9eeb46ae3fa2d8f95cda0,
     type: 3}
   bloodEffects: {fileID: 0}
-  projectileSpritePisol: {fileID: 0}
-  projectileSpriteRifle: {fileID: 0}
-  projectileSpriteShotgun: {fileID: 0}
+  projectileSpritePisol: {fileID: 2111795598424741636, guid: 4f47d78d33417634a90a45b13394ddbf,
+    type: 3}
+  projectileSpriteRifle: {fileID: 6031479186292884734, guid: 4f47d78d33417634a90a45b13394ddbf,
+    type: 3}
+  projectileSpriteShotgun: {fileID: 7394505945781128919, guid: 4f47d78d33417634a90a45b13394ddbf,
+    type: 3}
 --- !u!114 &1898340863
 MonoBehaviour:
   m_ObjectHideFlags: 0
