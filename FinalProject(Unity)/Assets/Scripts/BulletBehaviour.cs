@@ -68,17 +68,18 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
         }
-        if (areaObject.gameObject.CompareTag("Rous_Soldier")) // An Enemy with script RousSoldier has been hit
+        if (areaObject.gameObject.CompareTag("Enemy")) // An Enemy with script RousSoldier has been hit
         {
             GameObject enemy = areaObject.gameObject;
             if (!(enemy.GetComponent(typeof(Rous_Soldier)) == null))
             {
                 enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
                 Debug.Log($"Damage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
-            }   //else if (!(enemy.GetComponent(typeof(FAUNA)) == null))
-            //{
-            //    enemy.GetComponent<FAUNA>().HitByBullet(initialDamage);
-            //}
+            }
+            else if (!(enemy.GetComponent(typeof(Fauna)) == null))
+            {
+                enemy.GetComponent<Fauna>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
+            }
         }
 
         

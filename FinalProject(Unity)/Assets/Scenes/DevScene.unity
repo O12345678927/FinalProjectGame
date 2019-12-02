@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160652505}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rous_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 1183182722}
   m_Layer: 0
   m_Name: Rous_FootSoldier
-  m_TagString: Rous_Soldier
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 1441793520}
   m_Layer: 0
   m_Name: Fauna
-  m_TagString: Fauna
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -567,7 +567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1681694008}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: devEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 1898340860}
   - component: {fileID: 1898340862}
   - component: {fileID: 1898340863}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

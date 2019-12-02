@@ -25,7 +25,7 @@ public class PlayerScript : MonoBehaviour
     readonly float[][] weaponDataArray = {    new float[] { 0, 0, 0, 0 },        //fists
                                                 new float[] { 40, 15, 0.97f },      //pistol
                                                 new float[] { 45, 30, 0.99f },      //rifle
-                                                new float[] { 100, 7.5f, 0.80f }};    //shotgun
+                                                new float[] { 100, 12.5f, 0.80f }};    //shotgun
                                                 //{velocity, damage, spread, coef}
 
     void Start()
@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour
                 inventory[xx, yy] = 1;
         }
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Projectile"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Player"));
 
 
     }
@@ -81,7 +81,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     for (int x = 0; x < 6; x++)
                         FireWeapon(3, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[3]);
-                    chamberTime = 1.2f;
+                    chamberTime = 0.9f;
                 }
                 else
                 {

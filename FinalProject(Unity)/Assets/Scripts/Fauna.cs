@@ -59,7 +59,6 @@ public class Fauna : MonoBehaviour
                 default:
                     break;
             }
-            Debug.Log("Fauna Health: " + health);
         }
     }
     void PointToTarget(Vector3 currentTarget)
@@ -99,6 +98,7 @@ public class Fauna : MonoBehaviour
     {
 
         health = health - damage;
+        Debug.Log("Fauna Health: " + health);
         detectionRange = 12f;
         if (health < 0) // its dead now
         {
