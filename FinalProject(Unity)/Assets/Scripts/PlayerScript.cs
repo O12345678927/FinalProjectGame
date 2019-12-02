@@ -25,7 +25,7 @@ public class PlayerScript : MonoBehaviour
     readonly float[][] weaponDataArray = {    new float[] { 0, 0, 0, 0 },        //fists
                                                 new float[] { 40, 15, 0.97f },      //pistol
                                                 new float[] { 45, 30, 0.99f },      //rifle
-                                                new float[] { 100, 7.5f, 0.85f }};    //shotgun
+                                                new float[] { 100, 7.5f, 0.80f }};    //shotgun
                                                 //{velocity, damage, spread, coef}
 
     void Start()
@@ -37,7 +37,10 @@ public class PlayerScript : MonoBehaviour
             for (int yy = 0; yy < 2; yy++) // row 0 is redundent, as it is unarmed, no ammo needed
                 inventory[xx, yy] = 1;
         }
-        
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Projectile"));
+
+
     }
     private void Update()
     {
@@ -77,7 +80,7 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
                 {
                     for (int x = 0; x < 6; x++)
-                        FireWeapon(3, transform, Random.Range(-0.03f, 0.03f), weaponDataArray[3]);                    
+                        FireWeapon(3, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[3]);
                     chamberTime = 1.2f;
                 }
                 else

@@ -58,7 +58,6 @@ public class Rous_Soldier : MonoBehaviour
                 default:
                     break;
             }
-            Debug.Log("Rous Health: " + health);
         }
     }
     void PointToTarget(Vector3 currentTarget)
