@@ -48,3 +48,6 @@ TagManager:
   - name: HUD
     uniqueID: 911188235
     locked: 0
+  - name: Entities
+    uniqueID: 2314452267
+    locked: 0

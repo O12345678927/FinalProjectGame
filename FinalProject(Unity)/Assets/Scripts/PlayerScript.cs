@@ -23,8 +23,8 @@ public class PlayerScript : MonoBehaviour
     private float chamberTime = 0;
 
     readonly float[][] weaponDataArray = {    new float[] { 0, 0, 0, 0 },        //fists
-                                                new float[] { 40, 15, 0.97f },      //pistol
-                                                new float[] { 45, 30, 0.99f },      //rifle
+                                                new float[] { 25, 15, 0.97f },      //pistol
+                                                new float[] { 30, 30, 0.99f },      //rifle
                                                 new float[] { 100, 12.5f, 0.80f }};    //shotgun
                                                 //{velocity, damage, spread, coef}
 
@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
         inventory = new int[4, 2];
-        for (int xx = 0; xx < 4; xx++) //loops thourgh inventory and disables all weapons and sets ammo to zero. 
+        for (int xx = 0; xx < 4; xx++) //loops thourgh inventory and {CURRENTLY ENABLES!!!!!!!}disables all weapons and sets ammo to zero. 
         {
             for (int yy = 0; yy < 2; yy++) // row 0 is redundent, as it is unarmed, no ammo needed
                 inventory[xx, yy] = 1;
@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         IsMoving();
-        CheckInput(ref weaponIndex);    
+        CheckInput(ref weaponIndex);   
         switch (weaponIndex)
         {
             case 1:

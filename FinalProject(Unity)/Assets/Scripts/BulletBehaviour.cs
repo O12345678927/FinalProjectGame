@@ -116,8 +116,8 @@ public class BulletBehaviour : MonoBehaviour
         }
 
         //Set angle to direction
-        selfRigidBody.SetRotation(physDirection * 180 / Mathf.PI);
-        selfRigidBody.angularVelocity = 0;
+        selfRigidBody.SetRotation(physDirection * Mathf.Rad2Deg);
+        //selfRigidBody.angularVelocity = 0;
 
         //Set size of sprite (Will be changed with the addition of a tracer effect child)
         selfSpriteRenderer.size = new Vector2(tracerSize + (physAbsVelocity * Time.deltaTime)/2, tracerSize);
