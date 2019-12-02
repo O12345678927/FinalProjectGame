@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 1898340861}
   - component: {fileID: 1898340860}
   - component: {fileID: 1898340862}
+  - component: {fileID: 1898340864}
   - component: {fileID: 1898340863}
   m_Layer: 8
   m_Name: Player
@@ -744,11 +745,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a1ef178bb09f94ba01f4d0446f52ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 600
-  animator: {fileID: 1898340857}
   devBullet: {fileID: 3933162190717492874, guid: 8a1188ce9fd9eeb46ae3fa2d8f95cda0,
     type: 3}
   bloodEffects: {fileID: 0}
+  animator: {fileID: 1898340857}
   projectileSpritePisol: {fileID: 2111795598424741636, guid: 4f47d78d33417634a90a45b13394ddbf,
     type: 3}
   projectileSpriteRifle: {fileID: 6031479186292884734, guid: 4f47d78d33417634a90a45b13394ddbf,
@@ -769,3 +769,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 0}
   maxHealth: 100
+--- !u!114 &1898340864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898340856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2e2a5a112041949852ac5e09190dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 550
+  animator: {fileID: 1898340857}
