@@ -245,11 +245,11 @@ GameObject:
   - component: {fileID: 1183182720}
   - component: {fileID: 1183182719}
   - component: {fileID: 1183182723}
-  - component: {fileID: 1183182722}
   - component: {fileID: 1183182724}
+  - component: {fileID: 1183182722}
   m_Layer: 0
   m_Name: Rous_FootSoldier
-  m_TagString: Enemy
+  m_TagString: Rous_Soldier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183182718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.09, y: -1.22, z: 0}
+  m_LocalPosition: {x: -8.52, y: 4.09, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -350,9 +350,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 28
   turningSpeed: 7
+  health: 180
+  rousState: 0
   playerPos: {fileID: 160652505}
   animator: {fileID: 1183182719}
-  rousState: 0
   blood:
   - {fileID: 3029624673022531028, guid: 3b452140ad84a1f4ea6c2982a881b188, type: 3}
   - {fileID: 6286159136862055325, guid: d8930fc57b1bb00458911a1946ce0802, type: 3}
@@ -405,9 +406,12 @@ GameObject:
   - component: {fileID: 1441793519}
   - component: {fileID: 1441793518}
   - component: {fileID: 1441793517}
+  - component: {fileID: 1441793522}
+  - component: {fileID: 1441793521}
+  - component: {fileID: 1441793520}
   m_Layer: 0
   m_Name: Fauna
-  m_TagString: Untagged
+  m_TagString: Fauna
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,12 +493,71 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441793516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1, y: -0.03, z: 0}
+  m_LocalPosition: {x: 8.31, y: -4.17, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1441793520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441793516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de26cf02ffab3842a182d13702dc8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
+  turningSpeed: 2
+  health: 40
+  faunaState: 3
+  playerPos: {fileID: 160652505}
+  animator: {fileID: 1441793517}
+  blood:
+  - {fileID: 6399377379246951123, guid: b790b3e4586e46049846b31b9e3ee1d3, type: 3}
+  - {fileID: 2399733120288687401, guid: ee84147d6d3b24f4182f9fbec2777df8, type: 3}
+  - {fileID: 6350501367268061818, guid: 6e980f456daf6de4cad819f328994391, type: 3}
+--- !u!70 &1441793521
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441793516}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.015062491}
+  m_Size: {x: 0.39252758, y: 0.96987504}
+  m_Direction: 0
+--- !u!50 &1441793522
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441793516}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 15
+  m_LinearDrag: 10
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1681694007
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898340856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.63, y: -1.07, z: 0}
+  m_LocalPosition: {x: 0.21, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1681694008}

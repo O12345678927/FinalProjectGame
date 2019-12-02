@@ -7,7 +7,9 @@ TagManager:
   - Health Bar
   - Ammo
   - Projectile
-  - Enemy
+  - Undefined
+  - Rous_Soldier
+  - Fauna
   layers:
   - Default
   - TransparentFX

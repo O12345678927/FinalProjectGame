@@ -64,10 +64,15 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
         }
-        if (areaObject.gameObject.CompareTag("Enemy")) // An enemy has been hit
+        if (areaObject.gameObject.CompareTag("Rous_Soldier")) // An Enemy with script RousSoldier has been hit
         {
             GameObject enemy = areaObject.gameObject;
             enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage);
+        }
+        if (areaObject.gameObject.CompareTag("Fauna")) // An enemy with script Fauna has been hit
+        {
+            GameObject enemy = areaObject.gameObject;
+            enemy.GetComponent<Fauna>().HitByBullet(initialDamage);
         }
     }
     void OnTriggerEnter2D(Collider2D areaObject)

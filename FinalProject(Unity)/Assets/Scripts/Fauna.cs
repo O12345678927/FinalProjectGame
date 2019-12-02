@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rous_Soldier : MonoBehaviour
-{
+public class Fauna : MonoBehaviour
+{    
     //public var
     [Header("Stats:")]
     public float speed;
     public float turningSpeed;
-    public float health;  
-    public int rousState;
+    public float health;
+    public int faunaState;
 
     [Header("Controllers")]
     public Transform playerPos;
-    public Animator animator;    
+    public Animator animator;
     public GameObject[] blood;
 
     //private var    
@@ -25,40 +25,41 @@ public class Rous_Soldier : MonoBehaviour
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
-        targetDir = new Vector3(playerPos.position.x - transform.position.x, playerPos.position.y - transform.position.y, 0f);       
-        detectionRange = 7f;
+        targetDir = new Vector3(playerPos.position.x - transform.position.x, playerPos.position.y - transform.position.y, 0f);
+        health = 30f;
+        detectionRange = 5f;
     }
     private void FixedUpdate()
-    {        
+    {
         RunCycle();
     }
-    void RunCycle() // Decides what the rous is doing
+    void RunCycle() // Decides what the fauna is doing
     {
         if (isAlive)
         {
             // check if in range or was shot
             if (CheckForPlayer(detectionRange))
-                rousState = 1;
-            else if (rousState != 3) // inorder to idle the Rous must of not been eating 
+                faunaState = 1;
+            else if (faunaState != 3) // inorder to idle the Fauna must of not been eating 
             {
-                detectionRange = 7f;
-                rousState = 0;
+                detectionRange = 5f;
+                faunaState = 0;
             }
             // set the animation to the correct rousState
-            animator.SetInteger("rousState", rousState);
-            switch (rousState)
+            animator.SetInteger("faunaState", faunaState);
+            switch (faunaState)
             {
-                case 0: //Rous is Idle
-                case 3: // Rous is Eating                         
+                case 0: //fauna is Idle
+                case 3: // fauna is Eating                         
                     break; // Do nothing
-                case 1:     // Rous is Pursing                     
+                case 1:     // fauna is Pursing                     
                     PointToTarget(FindTarget());
                     Move();
                     break;
                 default:
                     break;
             }
-            Debug.Log("Rous Health: " + health);
+            Debug.Log("Fauna Health: " + health);
         }
     }
     void PointToTarget(Vector3 currentTarget)
@@ -86,7 +87,7 @@ public class Rous_Soldier : MonoBehaviour
             return true;
         else
         {
-            detectionRange = 7;
+            detectionRange = 3;
             return false;
         }
     }
@@ -96,7 +97,7 @@ public class Rous_Soldier : MonoBehaviour
     }
     public void HitByBullet(float damage)
     {
-        
+
         health = health - damage;
         detectionRange = 12f;
         if (health < 0) // its dead now
@@ -105,16 +106,16 @@ public class Rous_Soldier : MonoBehaviour
             animator.SetBool("isDead", true);
             Destroy(rbody);
             Destroy(gameObject.GetComponent<CapsuleCollider2D>());
-            
-        }        
-        else if (health < 40) // drop low damaged blood splatter
+
+        }
+        else if (health < 9) // drop low damaged blood splatter
             Instantiate(blood[2], transform.position, transform.rotation);
-        else if (health < 90) // drop medium damaged blood splatter
+        else if (health < 19) // drop medium damaged blood splatter
             Instantiate(blood[1], transform.position, transform.rotation);
         else // drop high damaged blood splatter
             Instantiate(blood[0], transform.position, transform.rotation);
 
 
 
-    }    
+    }
 }
