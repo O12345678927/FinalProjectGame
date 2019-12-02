@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    //public var
-    public float speed;
-    public Animator animator;
+    //public var      
     public Object devBullet;
     public GameObject bloodEffects;
+    public Animator animator;
 
     public Sprite projectileSpritePisol;
     public Sprite projectileSpriteRifle;
@@ -16,8 +15,7 @@ public class PlayerScript : MonoBehaviour
 
     //private
     private ushort weaponIndex = 0;
-    private Rigidbody2D rbody;
-    private float horiz, vert;
+    private Rigidbody2D rbody;    
     private int[,] inventory; // (x,y) x is for each weapons ammo, y is a boolean if the weapon has been picked up
     private GameObject bulletObject;
     private float chamberTime = 0;
@@ -29,8 +27,7 @@ public class PlayerScript : MonoBehaviour
                                                 //{velocity, damage, spread, coef}
 
     void Start()
-    {
-        rbody = gameObject.GetComponent<Rigidbody2D>();
+    {        
         inventory = new int[4, 2];
         for (int xx = 0; xx < 4; xx++) //loops thourgh inventory and {CURRENTLY ENABLES!!!!!!!}disables all weapons and sets ammo to zero. 
         {
@@ -44,7 +41,8 @@ public class PlayerScript : MonoBehaviour
     }
     private void Update()
     {
-        IsMoving();
+      
+        ChangeDirection();        
         CheckInput(ref weaponIndex);   
         switch (weaponIndex)
         {
@@ -96,30 +94,14 @@ public class PlayerScript : MonoBehaviour
                 break;
 
         }
-    }
-    void FixedUpdate()
-    {
-        horiz = Input.GetAxis("Horizontal");
-        vert = Input.GetAxis("Vertical");
-        Vector2 playerDir = new Vector2(horiz, vert);
-        playerDir.Normalize();
-        ChangeDirection();
-        rbody.AddForce(playerDir * speed);
-    }
+    }   
     void ChangeDirection() // changes the angle of the player to face the mouse
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-    }
-    void IsMoving() // Checks if player is moving, if so change the bool condition in the animator
-    {
-        if (horiz > 0 || horiz < 0 || vert > 0 || vert < 0)
-            animator.SetBool("isMoving", true);
-        else
-            animator.SetBool("isMoving", false);
-    }
+    }    
     void CheckInput(ref ushort weaponIndex)
     {
         if (Input.GetKey(KeyCode.Alpha1))
@@ -142,7 +124,7 @@ public class PlayerScript : MonoBehaviour
             animator.SetInteger("selectedWeapon", 3); //Shotgun
             weaponIndex = 3; //returns Shotgun (3)
         }
-    }
+    }   
     void InitializeBullet(GameObject bulletObject, Transform transform, float spread, float[] weaponDataArray)
     {
         Vector3 tempVec;
