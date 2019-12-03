@@ -21,9 +21,9 @@ public class PlayerScript : MonoBehaviour
     private float chamberTime = 0;
 
     readonly float[][] weaponDataArray = {    new float[] { 0, 0, 0, 0 },        //fists
-                                                new float[] { 25, 15, 0.97f },      //pistol
-                                                new float[] { 30, 30, 0.99f },      //rifle
-                                                new float[] { 100, 12.5f, 0.80f }};    //shotgun
+                                                new float[] { 25, 25f, 0.97f },      //pistol
+                                                new float[] { 30, 44f, 0.99f },      //rifle
+                                                new float[] { 100, 20f, 0.80f }};    //shotgun
                                                 //{velocity, damage, spread, coef}
 
     void Start()
