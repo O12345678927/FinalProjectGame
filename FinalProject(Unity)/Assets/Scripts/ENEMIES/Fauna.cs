@@ -11,8 +11,7 @@ public class Fauna : MonoBehaviour
     public float health;
     public int faunaState;
 
-    [Header("Controllers")]
-    public Transform playerPos;
+    [Header("Controllers")]    
     public Animator animator;
     public GameObject[] blood;
 
@@ -21,11 +20,12 @@ public class Fauna : MonoBehaviour
     private Vector3 targetDir; //target direction, weither it be the player that it is chasing, or a target position when wandering   
     private bool isAlive = true;
     private float detectionRange;
+    private Transform playerPos;
 
     void Start()
     {
-        rbody = gameObject.GetComponent<Rigidbody2D>();
-        targetDir = new Vector3(playerPos.position.x - transform.position.x, playerPos.position.y - transform.position.y, 0f);
+        playerPos = GameObject.Find("Player").GetComponent<Transform>();
+        rbody = gameObject.GetComponent<Rigidbody2D>();       
         health = 30f;
         detectionRange = 5f;
     }
