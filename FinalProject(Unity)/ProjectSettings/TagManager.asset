@@ -4,10 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Health Bar
   - Ammo
   - Projectile
   - Enemy
+  - HUD
+  - ShowOnPause
+  - HealthBar
   layers:
   - Default
   - TransparentFX
@@ -45,9 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: HUD
-    uniqueID: 911188235
-    locked: 0
   - name: Entities
     uniqueID: 2314452267
+    locked: 0
+  - name: HUD
+    uniqueID: 911188235
     locked: 0

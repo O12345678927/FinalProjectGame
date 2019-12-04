@@ -17,10 +17,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    // Can call this in another script, intakes a damage number and updates the Health Bar accordingly
-    public void TakeDamage(float damage)
+    private void Update()
     {
-        currentHealth -= damage;
+        GameObject Player = GameObject.Find("Player");
+        PlayerScript playerScript = Player.GetComponent<PlayerScript>();
+        currentHealth = playerScript.health;
         HealthBar.value = currentHealth;
     }
 }
