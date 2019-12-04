@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
     readonly float[][] weaponDataArray = {    new float[] { 0, 0, 0, 0 },        //fists
                                                 new float[] { 50, 25f, 0.95f },      //pistol
                                                 new float[] { 66, 44f, 0.97f },      //rifle
-                                                new float[] { 100, 15f, 0.80f }};    //shotgun
+                                                new float[] { 100, 25f, 0.80f }};    //shotgun
                                                 //{velocity, damage, spread, coef}
 
     void Start()
