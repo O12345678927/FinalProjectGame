@@ -40,7 +40,7 @@ public class Rous_Soldier : MonoBehaviour
             // check if in range or was shot
             if (CheckForPlayer(detectionRange))
                 rousState = 1;
-            else if (rousState != 3) // inorder to idle the Rous must of not been eating 
+            else if (rousState != 2) // inorder to idle the Rous must of not been eating 
             {
                 detectionRange = 7f;
                 rousState = 0;
@@ -50,7 +50,7 @@ public class Rous_Soldier : MonoBehaviour
             switch (rousState)
             {
                 case 0: //Rous is Idle
-                case 3: // Rous is Eating                         
+                case 2: // Rous is Eating                         
                     break; // Do nothing
                 case 1:     // Rous is Pursing                     
                     PointToTarget(FindTarget());
