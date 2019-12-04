@@ -22,6 +22,6 @@ public class PlayerHealth : MonoBehaviour
         GameObject Player = GameObject.Find("Player");
         PlayerScript playerScript = Player.GetComponent<PlayerScript>();
         currentHealth = playerScript.health;
-        HealthBar.value = currentHealth;
+        //HealthBar.value = currentHealth;
     }
 }

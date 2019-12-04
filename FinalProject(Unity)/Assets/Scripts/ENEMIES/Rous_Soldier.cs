@@ -10,6 +10,8 @@ public class Rous_Soldier : MonoBehaviour
     public float turningSpeed;
     public float health;  
     public int rousState;
+    public float NORMAL_DETECTION_RANGE;
+    public float EXTENDED_DETECTION_RANGE;
 
     [Header("Controllers")]
     
@@ -22,13 +24,13 @@ public class Rous_Soldier : MonoBehaviour
     private bool isAlive = true;
     private float detectionRange;
     private Transform playerPos;
-    private const uint KNOCKBACK_FORCE = 7500;
+    private const int KNOCKBACK_FORCE = 7500;    
 
     void Start()
     {
         playerPos = GameObject.Find("Player").GetComponent<Transform>();
-        rbody = gameObject.GetComponent<Rigidbody2D>();        
-        detectionRange = 5f;
+        rbody = gameObject.GetComponent<Rigidbody2D>();
+        detectionRange = NORMAL_DETECTION_RANGE;
     }
     private void FixedUpdate()
     {        
@@ -43,7 +45,7 @@ public class Rous_Soldier : MonoBehaviour
                 rousState = 1;
             else if (rousState != 2) // inorder to idle the Rous must of not been eating 
             {
-                detectionRange = 5f;
+                detectionRange = NORMAL_DETECTION_RANGE;
                 rousState = 0;
             }
             // set the animation to the correct rousState
@@ -87,7 +89,7 @@ public class Rous_Soldier : MonoBehaviour
             return true;
         else
         {
-            detectionRange = 5;
+            detectionRange = NORMAL_DETECTION_RANGE;
             return false;
         }
     }
@@ -99,8 +101,8 @@ public class Rous_Soldier : MonoBehaviour
     {
         
         health = health - damage;
-        detectionRange = 12f;
-        if (health < 0) // its dead now
+        detectionRange = EXTENDED_DETECTION_RANGE;
+        if (health < 1) // its dead now
         {
             isAlive = false;
             animator.SetBool("isDead", true);
