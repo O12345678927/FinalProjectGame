@@ -156,7 +156,6 @@ MonoBehaviour:
   turningSpeed: 7
   health: 180
   rousState: 0
-  playerPos: {fileID: 0}
   animator: {fileID: 7360955678362418691}
   blood:
   - {fileID: 3029624673022531028, guid: 3b452140ad84a1f4ea6c2982a881b188, type: 3}

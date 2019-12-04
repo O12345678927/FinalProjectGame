@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4088219599397580694}
   - component: {fileID: 4088219599397580695}
   m_Layer: 0
-  m_Name: Fauna 1
+  m_Name: Fauna
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,6 @@ MonoBehaviour:
   turningSpeed: 2
   health: 40
   faunaState: 3
-  playerPos: {fileID: 0}
   animator: {fileID: 4088219599397580682}
   blood:
   - {fileID: 6399377379246951123, guid: b790b3e4586e46049846b31b9e3ee1d3, type: 3}
