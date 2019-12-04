@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     [Header("Playerstats")]
     public float speed;
     public float health;
+    public float invulnerabilityTime;
 
     [Header("Controllers")]
     public Object devBullet;
@@ -22,29 +23,38 @@ public class PlayerScript : MonoBehaviour
     //private
     private Rigidbody2D rbody;
     private float horiz, vert;
-
     private ushort weaponIndex = 0;
-    private int[,] inventory; // (x,y) x is for each weapons ammo, y is a boolean if the weapon has been picked up
+    private float damageTimer = 0;
+    private object[,] inventory; // (x,y) x is for each weapons ammo, y is a boolean if the weapon has been picked up
     private bool playerIsAlive = true;
     private bool playerIsFrozen = false; // use for cutscenes or scripted scences
 
     private GameObject bulletObject;
     private float chamberTime = 0;
 
-    readonly float[][] weaponDataArray = {  new float[] { 0, 0, 0, 0 },         //Unarmed
-                                            new float[] { 50, 25f, 0.95f },     //pistol
-                                            new float[] { 66, 44f, 0.97f },     //rifle
-                                            new float[] { 100, 30f, 0.75f }};   //shotgun
-                                                //{velocity, damage, spread, coef}
+    readonly float[][] weaponDataArray = {  new float[] { 0, 0, 0, 0, 0 },         //Unarmed
+                                            new float[] { 50, 25f, 0.95f, -1 },     //pistol
+                                            new float[] { 66, 44f, 0.97f, 120},     //rifle
+                                            new float[] { 100, 30f, 0.75f, 36}};   //shotgun
+                                                                                //{velocity, damage, spread, coef, maxAmmo}
 
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
-        inventory = new int[4, 2];
+        inventory = new object[4, 2];
         for (int xx = 0; xx < 4; xx++) //loops thourgh inventory and {CURRENTLY ENABLES!!!!!!!}disables all weapons and sets ammo to zero. 
         {
-            for (int yy = 0; yy < 2; yy++) // row 0 is redundent, as it is unarmed, no ammo needed
-                inventory[xx, yy] = 1;
+            if (xx == 0) //You've got fists I guess
+            {
+                inventory[xx, 0] = true;
+                inventory[xx, 1] = 0;
+            }
+            else //Set everything else to 0
+            {
+                inventory[xx, 0] = false;
+                inventory[xx, 1] = 0;
+            }
+
         }
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Player"));
@@ -57,6 +67,16 @@ public class PlayerScript : MonoBehaviour
         {
             movePlayer();
         }
+
+        if (damageTimer > Time.fixedDeltaTime)
+        {
+            damageTimer -= Time.fixedDeltaTime;
+            //Debug.Log($"{damageTimer} - {Time.fixedDeltaTime}");
+        }
+        else
+        {
+            damageTimer = 0f;
+        }
     }
     void Update()
     {
@@ -65,8 +85,8 @@ public class PlayerScript : MonoBehaviour
             ChangeDirection();
             WeaponListener();
         }
-        Debug.Log("Weapon number is" + weaponIndex);
-    }   
+        //Debug.Log("Weapon number is" + weaponIndex);
+    }
     //--------------------------------- Movement functions ----------------------------------------
     void ChangeDirection() // changes the angle of the player to face the mouse
     {
@@ -100,22 +120,22 @@ public class PlayerScript : MonoBehaviour
             animator.SetInteger("selectedWeapon", 0); //Unarmed
             weaponIndex = 0; //returns Unarmed (0)
         }
-        else if (Input.GetKey(KeyCode.Alpha2) && inventory[1,1] == 1)
+        else if (Input.GetKey(KeyCode.Alpha2) && (bool)inventory[1, 0])
         {
             animator.SetInteger("selectedWeapon", 1); //pistol
             weaponIndex = 1; //returns Pistol (1)
         }
-        else if (Input.GetKey(KeyCode.Alpha3) && inventory[2, 1] == 1)
+        else if (Input.GetKey(KeyCode.Alpha3) && (bool)inventory[2, 0])
         {
             animator.SetInteger("selectedWeapon", 2); //rifle
             weaponIndex = 2; //returns Rifle (2)
         }
-        else if (Input.GetKey(KeyCode.Alpha4) && inventory[3, 1] == 1)
+        else if (Input.GetKey(KeyCode.Alpha4) && (bool)inventory[3, 0])
         {
             animator.SetInteger("selectedWeapon", 3); //Shotgun
             weaponIndex = 3; //returns Shotgun (3)
         }
-    }   
+    }
     void InitializeBullet(GameObject bulletObject, Transform transform, float spread, float[] weaponDataArray)
     {
         Vector3 tempVec;
@@ -135,7 +155,7 @@ public class PlayerScript : MonoBehaviour
          */
         bulletObject = (GameObject)Instantiate(devBullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
         InitializeBullet(bulletObject, transform, spread, weaponDataArray);
-        switch (inputType)        
+        switch (inputType)
         {
             case 0:
                 //Case 0 is unused, can be cleaned up when it seems fit
@@ -155,7 +175,7 @@ public class PlayerScript : MonoBehaviour
             default:
                 Debug.Log("Error, invalid bullet type called!");
                 break;
-        }        
+        }
     }
     void WeaponListener()
     {
@@ -214,8 +234,10 @@ public class PlayerScript : MonoBehaviour
     //--------------------------------- Damage functions ----------------------------------------
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && damageTimer < Time.fixedDeltaTime)
         {
+            damageTimer = invulnerabilityTime;
+            Debug.Log($"Invulnerability time!\n{invulnerabilityTime} seconds");
             Vector3 recoil;
             GameObject hitBy = other.gameObject;
             if (!(hitBy.GetComponent(typeof(Rous_Soldier)) == null))
@@ -247,5 +269,16 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("isDead", true);
         }
     }
-
+    public void PickupResource(uint weaponIndex, bool isWeapon, uint ammoQuantity)
+    {
+        if ((bool)inventory[weaponIndex, 0])
+        {
+            inventory[weaponIndex, 1] = Mathf.Min((short)inventory[weaponIndex, 1] + ammoQuantity,weaponDataArray[weaponIndex][3]);
+        }
+        else
+        {
+            inventory[weaponIndex, 0] = weaponIndex;
+            inventory[weaponIndex, 1] = Mathf.Min((short)inventory[weaponIndex, 1] + ammoQuantity, weaponDataArray[weaponIndex][3]);
+        }
+    }
 }

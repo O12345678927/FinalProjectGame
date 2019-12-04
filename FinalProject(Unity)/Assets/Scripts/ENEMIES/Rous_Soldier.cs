@@ -22,12 +22,13 @@ public class Rous_Soldier : MonoBehaviour
     private bool isAlive = true;
     private float detectionRange;
     private Transform playerPos;
+    private const uint KNOCKBACK_FORCE = 7500;
 
     void Start()
     {
         playerPos = GameObject.Find("Player").GetComponent<Transform>();
         rbody = gameObject.GetComponent<Rigidbody2D>();        
-        detectionRange = 7f;
+        detectionRange = 5f;
     }
     private void FixedUpdate()
     {        
@@ -42,7 +43,7 @@ public class Rous_Soldier : MonoBehaviour
                 rousState = 1;
             else if (rousState != 2) // inorder to idle the Rous must of not been eating 
             {
-                detectionRange = 7f;
+                detectionRange = 5f;
                 rousState = 0;
             }
             // set the animation to the correct rousState
@@ -86,7 +87,7 @@ public class Rous_Soldier : MonoBehaviour
             return true;
         else
         {
-            detectionRange = 7;
+            detectionRange = 5;
             return false;
         }
     }
@@ -116,5 +117,14 @@ public class Rous_Soldier : MonoBehaviour
 
 
 
-    }    
+    }
+    private void OnCollisionEnter2D(Collision2D collisionObj)
+    {
+        if (collisionObj.gameObject.CompareTag("Player"))
+        {
+            rbody.AddForce(-gameObject.transform.up*KNOCKBACK_FORCE);
+            Debug.Log($"Push\n{-FindTarget()}{-gameObject.transform.up * KNOCKBACK_FORCE}");
+            
+        }
+    }
 }
