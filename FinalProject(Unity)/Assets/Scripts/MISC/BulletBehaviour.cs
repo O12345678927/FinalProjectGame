@@ -5,13 +5,16 @@ using UnityEngine;
 public class BulletBehaviour : MonoBehaviour
 {
     public float dragCoef = 0.97f;
-    public float tracerSize = 0.125f;
+    public float tracerSize = 0.2f;
+    public int fadeMomentum = 8;
+    public float fadeRatio = 0.5f;
+    public GameObject tracerObject;
 
-
-    const float TURBULENCE_COEF = 0.7f;
+    const float TURBULENCE_COEF = 0.75f;
 
     Rigidbody2D selfRigidBody;
     SpriteRenderer selfSpriteRenderer;
+    SpriteRenderer tracerSpriteRenderer;
 
     private float physAbsVelocity;
     private float physDirection;
@@ -20,7 +23,6 @@ public class BulletBehaviour : MonoBehaviour
     private float turbulenceVelocity;
     private float initialVelocity;
     private float initialDamage;
-
     private ushort lifeTime;
 
     // Start is called before the first frame update
@@ -45,21 +47,14 @@ public class BulletBehaviour : MonoBehaviour
         }
         else
         {
-            selfRigidBody = GetComponent<Rigidbody2D>();
-            GetComponent<BoxCollider2D>().size = new Vector2(tracerSize, tracerSize);
-
-            //If the sprite renderer doesn't exist then I don't even care anymore, I'm gonna assign this without checking anyways
             selfSpriteRenderer = GetComponent<SpriteRenderer>();
+            tracerSpriteRenderer = tracerObject.GetComponent<SpriteRenderer>();
+            selfRigidBody = GetComponent<Rigidbody2D>();
+
+            GetComponent<BoxCollider2D>().size = new Vector2(2 * tracerSize, tracerSize);
+
+            selfSpriteRenderer.size = new Vector2(tracerSize, tracerSize);
         }
-        //foreach (GameObject curObject in GameObject.FindGameObjectsWithTag("Projectile"))
-        //{
-            //Ignore physics for each
-            //THIS IS LAGGY! find another way to do collision like this
-            //Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), curObject.GetComponent<BoxCollider2D>());
-            //Debug.Log(curObject.gameObject.name);
-            //Try IgnoreLayerCollision later!
-            //IgnoreLayerCollision will be put in the playerscript
-        //}
     }
     void OnCollisionEnter2D(Collision2D areaObject)
     {
@@ -68,17 +63,18 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
             Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
         }
-        if (areaObject.gameObject.CompareTag("Enemy")) // An Enemy with script RousSoldier has been hit
+        if (areaObject.gameObject.CompareTag("Enemy")) // An Enemy has been hit
         {
             GameObject enemy = areaObject.gameObject;
             if (!(enemy.GetComponent(typeof(Rous_Soldier)) == null))
             {
                 enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
-                Debug.Log($"Damage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
+                Debug.Log($"Hit Rous!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
             }
             else if (!(enemy.GetComponent(typeof(Fauna)) == null))
             {
                 enemy.GetComponent<Fauna>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
+                Debug.Log($"Hit Fauna!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
             }
         }
 
@@ -117,10 +113,17 @@ public class BulletBehaviour : MonoBehaviour
 
         //Set angle to direction
         selfRigidBody.SetRotation(physDirection * Mathf.Rad2Deg);
-        //selfRigidBody.angularVelocity = 0;
 
-        //Set size of sprite (Will be changed with the addition of a tracer effect child)
-        selfSpriteRenderer.size = new Vector2(tracerSize + (physAbsVelocity * Time.deltaTime)/2, tracerSize);
+        //Set size and position of tracer
+        tracerSpriteRenderer.size = new Vector2((physAbsVelocity * Time.deltaTime) / 1.5f, tracerSize / 1.5f);
+        tracerObject.transform.localPosition = new Vector2(-tracerSpriteRenderer.size.x / 2, 0);
+
+        //Fade out the sprites
+        if (physAbsVelocity < fadeMomentum)
+        {
+            selfSpriteRenderer.color = new Color(1f, 1f, 1f, Mathf.Max(0, physAbsVelocity / fadeMomentum - fadeRatio));
+            tracerSpriteRenderer.color = new Color(1f, 1f, 1f, Mathf.Max(0, physAbsVelocity / fadeMomentum - fadeRatio));
+        }
 
         lifeTime++;
         if (lifeTime >= 255)
@@ -128,7 +131,7 @@ public class BulletBehaviour : MonoBehaviour
             Destroy(gameObject);
             //Kill after about 4 to 5 seconds
         }
-        else if (physAbsVelocity < 1)
+        else if (physAbsVelocity < fadeMomentum*fadeRatio)
         {
             Destroy(gameObject);
             //Kill if too slow

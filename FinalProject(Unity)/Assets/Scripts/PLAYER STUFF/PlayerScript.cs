@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour
     public Object devBullet;
     public GameObject bloodEffects;
     public Animator animator;
-    public float speed;
 
     public Sprite projectileSpritePisol;
     public Sprite projectileSpriteRifle;
@@ -20,18 +19,15 @@ public class PlayerScript : MonoBehaviour
     private int[,] inventory; // (x,y) x is for each weapons ammo, y is a boolean if the weapon has been picked up
     private GameObject bulletObject;
     private float chamberTime = 0;
-    private float horiz, vert;    
-    private float health = 100f;
-    private bool isAlive = true; 
+
     readonly float[][] weaponDataArray = {    new float[] { 0, 0, 0, 0 },        //fists
-                                                new float[] { 25, 25f, 0.97f },      //pistol
-                                                new float[] { 30, 44f, 0.99f },      //rifle
-                                                new float[] { 100, 20f, 0.80f }};    //shotgun
+                                                new float[] { 50, 25f, 0.95f },      //pistol
+                                                new float[] { 66, 44f, 0.97f },      //rifle
+                                                new float[] { 100, 15f, 0.80f }};    //shotgun
                                                 //{velocity, damage, spread, coef}
 
     void Start()
-    {
-        rbody = gameObject.GetComponent<Rigidbody2D>();
+    {        
         inventory = new int[4, 2];
         for (int xx = 0; xx < 4; xx++) //loops thourgh inventory and {CURRENTLY ENABLES!!!!!!!}disables all weapons and sets ammo to zero. 
         {
@@ -43,101 +39,60 @@ public class PlayerScript : MonoBehaviour
 
 
     }
-    void FixedUpdate()
-    {
-        if (isAlive)
-        {
-            horiz = Input.GetAxis("Horizontal");
-            vert = Input.GetAxis("Vertical");
-            Vector2 playerDir = new Vector2(horiz, vert);
-            playerDir.Normalize();
-            rbody.AddForce(playerDir * speed);
-            IsMoving();
-        }
-    }
-    void IsMoving() // Checks if player is moving, if so change the bool condition in the animator
-    {
-        if (horiz > 0 || horiz < 0 || vert > 0 || vert < 0)
-            animator.SetBool("isMoving", true);
-        else
-            animator.SetBool("isMoving", false);
-    }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy")) // An Enemy with script RousSoldier has been hit
-        {            
-            Vector3 newDirection;
-            GameObject enemy = other.gameObject;
-            newDirection = transform.position - enemy.transform.position;
-            newDirection.Normalize();           
-            TakeDamage(newDirection);
-        }
-    }
-    void TakeDamage(Vector3 knockback)
-    {
-        rbody.AddForce(knockback * 5000f);
-        health = health - 10f;
-        if (health < 1)
-        {
-            isAlive = false;
-            animator.SetBool("isDead", true);
-        }
-    }
     private void Update()
     {
-        if (isAlive)
+      
+        ChangeDirection();        
+        CheckInput(ref weaponIndex);   
+        switch (weaponIndex)
         {
-            ChangeDirection();
-            CheckInput(ref weaponIndex);
-            switch (weaponIndex)
-            {
-                case 1:
-                    if (Input.GetButtonDown("Fire1") && chamberTime < Time.deltaTime)
-                    {
-                        FireWeapon(1, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[1]);
-                        chamberTime = 0.15f;
-                    }
-                    else
-                    {
-                        if (chamberTime > Time.deltaTime)
-                            chamberTime -= Time.deltaTime;
-                        else
-                            chamberTime = 0;
-                    }
-                    break;
-                case 2:
-                    if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
-                    {
-                        FireWeapon(2, transform, Random.Range(-0.1f, 0.1f), weaponDataArray[2]);
-                        chamberTime = 0.12f;
-                    }
-                    else
-                    {
-                        if (chamberTime > Time.deltaTime)
-                            chamberTime -= Time.deltaTime;
-                        else
-                            chamberTime = 0;
-                    }
-                    break;
-                case 3:
-                    if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
-                    {
-                        for (int x = 0; x < 6; x++)
-                            FireWeapon(3, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[3]);
-                        chamberTime = 0.9f;
-                    }
-                    else
-                    {
-                        if (chamberTime > Time.deltaTime)
-                            chamberTime -= Time.deltaTime;
-                        else
-                            chamberTime = 0;
-                    }
-                    break;
-                default:
-                    //I dunno'      Punch maybe lol
-                    break;
-            }
+            case 1:
+                if (Input.GetButtonDown("Fire1") && chamberTime<Time.deltaTime)
+                {
+                    FireWeapon(1, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[1]);
+                    chamberTime = 0.15f;
+                }
+                else
+                {
+                    if (chamberTime > Time.deltaTime)
+                        chamberTime -= Time.deltaTime;                    
+                    else                    
+                        chamberTime = 0;                    
+                }
+                break;
+            case 2:
+                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
+                {
+                    FireWeapon(2, transform, Random.Range(-0.1f, 0.1f), weaponDataArray[2]);
+                    chamberTime = 0.12f;
+                }
+                else
+                {
+                    if (chamberTime > Time.deltaTime)
+                        chamberTime -= Time.deltaTime;                    
+                    else                    
+                        chamberTime = 0;                    
+                }
+                break;
+            case 3:
+                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
+                {
+                    for (int x = 0; x < 8; x++)
+                        FireWeapon(3, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[3]);
+                    chamberTime = 0.9f;
+                }
+                else
+                {
+                    if (chamberTime > Time.deltaTime)                    
+                        chamberTime -= Time.deltaTime;                    
+                    else                    
+                        chamberTime = 0;                    
+                }
+                break;
+            default:
+                //I dunno'      Punch maybe lol
+                break;
+
         }
     }   
     void ChangeDirection() // changes the angle of the player to face the mouse
@@ -169,8 +124,7 @@ public class PlayerScript : MonoBehaviour
             animator.SetInteger("selectedWeapon", 3); //Shotgun
             weaponIndex = 3; //returns Shotgun (3)
         }
-    }    
-    // Weapon stuff
+    }   
     void InitializeBullet(GameObject bulletObject, Transform transform, float spread, float[] weaponDataArray)
     {
         Vector3 tempVec;
@@ -193,7 +147,7 @@ public class PlayerScript : MonoBehaviour
         switch (inputType)        
         {
             case 0:
-                //A bunch of temporary bullshit, this will be removed
+                //Case 0 is unused, can be cleaned up when it seems fit
                 bulletObject = (GameObject)Instantiate(devBullet, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
                 InitializeBullet(bulletObject, transform, spread, weaponDataArray);
                 break;
