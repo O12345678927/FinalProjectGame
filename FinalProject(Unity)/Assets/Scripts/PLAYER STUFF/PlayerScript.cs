@@ -65,6 +65,7 @@ public class PlayerScript : MonoBehaviour
             ChangeDirection();
             WeaponListener();
         }
+        Debug.Log("Weapon number is" + weaponIndex);
     }   
     //--------------------------------- Movement functions ----------------------------------------
     void ChangeDirection() // changes the angle of the player to face the mouse
@@ -242,7 +243,8 @@ public class PlayerScript : MonoBehaviour
         if (health < 1) // player is killed
         {
             playerIsAlive = false;
-            Destroy(rbody);            
+            Destroy(rbody);
+            animator.SetBool("isDead", true);
         }
     }
 
