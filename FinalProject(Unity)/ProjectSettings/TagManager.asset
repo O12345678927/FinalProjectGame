@@ -4,12 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ammo
   - Projectile
   - Enemy
   - HUD
   - ShowOnPause
   - HealthBar
+  - PistolAmmo
+  - RifleAmmo
+  - ShotgunAmmo
+  - PistolEquip
+  - RifleEquip
+  - ShotgunEquip
   layers:
   - Default
   - TransparentFX
