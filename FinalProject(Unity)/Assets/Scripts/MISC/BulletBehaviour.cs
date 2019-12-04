@@ -10,7 +10,7 @@ public class BulletBehaviour : MonoBehaviour
     public float fadeRatio = 0.5f;
     public GameObject tracerObject;
 
-    const float TURBULENCE_COEF = 0.75f;
+    const float TURBULENCE_COEF = 1.5f;
 
     Rigidbody2D selfRigidBody;
     SpriteRenderer selfSpriteRenderer;
