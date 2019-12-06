@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1980515029
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 361635475173081019, guid: 822a2eb38e2756147867196d6f427dd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -156,7 +156,8 @@ MonoBehaviour:
   turningSpeed: 7
   health: 180
   rousState: 0
-  playerPos: {fileID: 0}
+  NORMAL_DETECTION_RANGE: 5
+  EXTENDED_DETECTION_RANGE: 15
   animator: {fileID: 7360955678362418691}
   blood:
   - {fileID: 3029624673022531028, guid: 3b452140ad84a1f4ea6c2982a881b188, type: 3}

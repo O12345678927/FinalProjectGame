@@ -15,6 +15,7 @@ TagManager:
   - PistolEquip
   - RifleEquip
   - ShotgunEquip
+  - Item
   layers:
   - Default
   - TransparentFX

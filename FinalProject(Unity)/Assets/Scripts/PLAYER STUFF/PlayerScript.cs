@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     public Object devBullet;
     public GameObject bloodEffects;
     public Animator animator;
+    public GameObject[] blood;
 
     [Header("Bullet Sprites")]
     public Sprite projectileSpritePisol;
@@ -25,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     private float horiz, vert;
     private ushort weaponIndex = 0;
     private float damageTimer = 0;
-    private object[,] inventory; // (x,y) x is for each weapons ammo, y is a boolean if the weapon has been picked up
+    private int[,] inventory; // [integer = if player has weapon 1 = yes, 0 = no][integer = amount of ammo weapon has]
     private bool playerIsAlive = true;
     private bool playerIsFrozen = false; // use for cutscenes or scripted scences
 
@@ -33,7 +34,7 @@ public class PlayerScript : MonoBehaviour
     private float chamberTime = 0;
 
     readonly float[][] weaponDataArray = {  new float[] { 0, 0, 0, 0, 0 },         //Unarmed
-                                            new float[] { 50, 25f, 0.95f, -1 },     //pistol
+                                            new float[] { 50, 25f, 0.95f, -1},     //pistol
                                             new float[] { 66, 44f, 0.97f, 120},     //rifle
                                             new float[] { 100, 30f, 0.75f, 36}};   //shotgun
                                                                                 //{velocity, damage, spread, coef, maxAmmo}
@@ -41,20 +42,11 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
-        inventory = new object[4, 2];
-        for (int xx = 0; xx < 4; xx++) //loops thourgh inventory and {CURRENTLY ENABLES!!!!!!!}disables all weapons and sets ammo to zero. 
-        {
-            if (xx == 0) //You've got fists I guess
-            {
-                inventory[xx, 0] = true;
+        inventory = new int[4, 2];
+        for (int xx = 0; xx < 4; xx++) //loops thourgh inventory and disables all weapons and sets ammo to zero. 
+        {            
+                inventory[xx, 0] = 0;
                 inventory[xx, 1] = 0;
-            }
-            else //Set everything else to 0
-            {
-                inventory[xx, 0] = false;
-                inventory[xx, 1] = 0;
-            }
-
         }
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Player"));
@@ -64,19 +56,11 @@ public class PlayerScript : MonoBehaviour
     void FixedUpdate()
     {
         if (playerIsAlive && !playerIsFrozen)
-        {
             movePlayer();
-        }
-
-        if (damageTimer > Time.fixedDeltaTime)
-        {
-            damageTimer -= Time.fixedDeltaTime;
-            //Debug.Log($"{damageTimer} - {Time.fixedDeltaTime}");
-        }
+        if (damageTimer > Time.fixedDeltaTime)        
+            damageTimer -= Time.fixedDeltaTime;       
         else
-        {
-            damageTimer = 0f;
-        }
+            damageTimer = 0f;        
     }
     void Update()
     {
@@ -85,8 +69,8 @@ public class PlayerScript : MonoBehaviour
             ChangeDirection();
             WeaponListener();
         }
-        //Debug.Log("Weapon number is" + weaponIndex);
     }
+
     //--------------------------------- Movement functions ----------------------------------------
     void ChangeDirection() // changes the angle of the player to face the mouse
     {
@@ -120,17 +104,17 @@ public class PlayerScript : MonoBehaviour
             animator.SetInteger("selectedWeapon", 0); //Unarmed
             weaponIndex = 0; //returns Unarmed (0)
         }
-        else if (Input.GetKey(KeyCode.Alpha2) && (bool)inventory[1, 0])
+        else if (Input.GetKey(KeyCode.Alpha2) && inventory[1, 0] == 1)
         {
             animator.SetInteger("selectedWeapon", 1); //pistol
             weaponIndex = 1; //returns Pistol (1)
         }
-        else if (Input.GetKey(KeyCode.Alpha3) && (bool)inventory[2, 0])
+        else if (Input.GetKey(KeyCode.Alpha3) && inventory[2, 0] == 1)
         {
             animator.SetInteger("selectedWeapon", 2); //rifle
             weaponIndex = 2; //returns Rifle (2)
         }
-        else if (Input.GetKey(KeyCode.Alpha4) && (bool)inventory[3, 0])
+        else if (Input.GetKey(KeyCode.Alpha4) && inventory[3, 0] == 1)
         {
             animator.SetInteger("selectedWeapon", 3); //Shotgun
             weaponIndex = 3; //returns Shotgun (3)
@@ -187,6 +171,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     FireWeapon(1, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[1]);
                     chamberTime = 0.15f;
+                    
                 }
                 else
                 {
@@ -197,10 +182,11 @@ public class PlayerScript : MonoBehaviour
                 }
                 break;
             case 2:
-                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
+                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime && inventory[2, 1] > 0)
                 {
                     FireWeapon(2, transform, Random.Range(-0.1f, 0.1f), weaponDataArray[2]);
                     chamberTime = 0.12f;
+                    inventory[2, 1]--;
                 }
                 else
                 {
@@ -211,11 +197,12 @@ public class PlayerScript : MonoBehaviour
                 }
                 break;
             case 3:
-                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime)
+                if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime && inventory[3, 1] > 0)
                 {
                     for (int x = 0; x < 8; x++)
                         FireWeapon(3, transform, Random.Range(-0.05f, 0.05f), weaponDataArray[3]);
                     chamberTime = 0.9f;
+                    inventory[3, 1]--;
                 }
                 else
                 {
@@ -257,28 +244,37 @@ public class PlayerScript : MonoBehaviour
     }
     void ApplyDamage(float amount, Vector3 recoil)
     {
-        if (health > 0)
-        {
-            health -= amount;
-            rbody.AddForce(recoil);
-        }
-        if (health < 1) // player is killed
+        health -= amount;
+        
+        if (health < 1) // its dead now
         {
             playerIsAlive = false;
-            Destroy(rbody);
             animator.SetBool("isDead", true);
+            Destroy(rbody);
         }
+        else if (health < 25) // drop low damaged blood splatter
+            Instantiate(blood[2], transform.position, transform.rotation);
+        else if (health < 75) // drop medium damaged blood splatter
+            Instantiate(blood[1], transform.position, transform.rotation);
+        else // drop high damaged blood splatter
+            Instantiate(blood[0], transform.position, transform.rotation);
     }
-    public void PickupResource(uint weaponIndex, bool isWeapon, uint ammoQuantity)
+    public void PickupItem(int weaponIndex, bool isWeapon, int ammoQuantity)
     {
-        if ((bool)inventory[weaponIndex, 0])
+        // [integer = if player has weapon 1 = yes, 0 = no][integer = amount of ammo weapon has]
+        if(weaponIndex == 0) // first check if the item being picked up is a healthpack
         {
-            inventory[weaponIndex, 1] = Mathf.Min((short)inventory[weaponIndex, 1] + ammoQuantity,weaponDataArray[weaponIndex][3]);
+            health = Mathf.Min(ammoQuantity + health, 100f);
         }
-        else
+        else if (isWeapon) // The item being picked up is a weapon, unlock it and add ammo
         {
-            inventory[weaponIndex, 0] = weaponIndex;
-            inventory[weaponIndex, 1] = Mathf.Min((short)inventory[weaponIndex, 1] + ammoQuantity, weaponDataArray[weaponIndex][3]);
+            inventory[weaponIndex, 0] = 1; // The weapon is selected
+            inventory[weaponIndex, 1] += ammoQuantity;
+            Debug.Log("Ammo of Ammo type" + weaponIndex + " = " + inventory[weaponIndex, 1]);
+        }
+        else // if the item is not a weapon or a health pack then it is ammo
+        {           
+            inventory[weaponIndex, 1] = (int)Mathf.Min(inventory[weaponIndex, 1] + ammoQuantity, weaponDataArray[weaponIndex][3]);
         }
     }
 }
