@@ -76,9 +76,7 @@ public class BulletBehaviour : MonoBehaviour
                 enemy.GetComponent<Fauna>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
                 Debug.Log($"Hit Fauna!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
             }
-        }
-
-        
+        }        
     }
     void OnTriggerEnter2D(Collider2D areaObject)
     {
@@ -92,7 +90,6 @@ public class BulletBehaviour : MonoBehaviour
         {
             Debug.Log($"{gameObject.name.ToString()} Hit the player");
         }
-
     }
     void FixedUpdate()
     {
@@ -110,7 +107,6 @@ public class BulletBehaviour : MonoBehaviour
             physDirection = Mathf.Atan2(selfRigidBody.velocity.y, selfRigidBody.velocity.x)+ turbulenceVelocity;
             selfRigidBody.velocity = new Vector2(Mathf.Cos(physDirection) * physAbsVelocity * dragCoef, Mathf.Sin(physDirection) * physAbsVelocity * dragCoef);
         }
-
         //Set angle to direction
         selfRigidBody.SetRotation(physDirection * Mathf.Rad2Deg);
 
@@ -124,7 +120,6 @@ public class BulletBehaviour : MonoBehaviour
             selfSpriteRenderer.color = new Color(1f, 1f, 1f, Mathf.Max(0, physAbsVelocity / fadeMomentum - fadeRatio));
             tracerSpriteRenderer.color = new Color(1f, 1f, 1f, Mathf.Max(0, physAbsVelocity / fadeMomentum - fadeRatio));
         }
-
         lifeTime++;
         if (lifeTime >= 255)
         {
@@ -137,5 +132,4 @@ public class BulletBehaviour : MonoBehaviour
             //Kill if too slow
         }
     }
-
 }
