@@ -239,6 +239,12 @@ public class PlayerScript : MonoBehaviour
                 recoil.Normalize();
                 ApplyDamage(1f, recoil * 2500f);
             }
+            else if (!(hitBy.GetComponent(typeof(Rous_Queen)) == null))
+            {
+                recoil = transform.position - hitBy.transform.position;
+                recoil.Normalize();
+                ApplyDamage(80f, recoil * 2500f);
+            }
             //Add more for poin balls
         }
     }
