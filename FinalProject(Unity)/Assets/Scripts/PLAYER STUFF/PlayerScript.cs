@@ -21,12 +21,14 @@ public class PlayerScript : MonoBehaviour
     public Sprite projectileSpriteRifle;
     public Sprite projectileSpriteShotgun;
 
+    [Header("Inventory")]
+    public int[,] inventory; // [integer = if player has weapon 1 = yes, 0 = no][integer = amount of ammo weapon has]
+
     //private
     private Rigidbody2D rbody;
     private float horiz, vert;
     private ushort weaponIndex = 0;
     private float damageTimer = 0;
-    private int[,] inventory; // [integer = if player has weapon 1 = yes, 0 = no][integer = amount of ammo weapon has]
     private bool playerIsAlive = true;
     private bool playerIsFrozen = false; // use for cutscenes or scripted scences
 
