@@ -62,8 +62,7 @@ public class Rous_Queen : MonoBehaviour
         return playerPos.position - transform.position;
     }
     void InitializeBullet(GameObject bulletObject, Transform transform, float spread, float[] weaponDataArray)
-    {
-        Debug.Log("Initalizeing bullet");
+    {        
         Vector3 tempVec = new Vector3(0f,-1f,0f);
         bulletObject.GetComponent<Rigidbody2D>().velocity = tempVec;
         bulletObject.GetComponent<BulletBehaviour>().Initialize(weaponDataArray);

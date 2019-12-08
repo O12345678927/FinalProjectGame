@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject bloodEffects;
     public Animator animator;
     public GameObject[] blood;
+    public Camera mainCamera;
 
     [Header("Bullet Sprites")]
     public Sprite projectileSpritePisol;
@@ -249,7 +250,7 @@ public class PlayerScript : MonoBehaviour
             }
             //Add more for poin balls
         }
-    }
+    }     
     void ApplyDamage(float amount, Vector3 recoil)
     {
         health -= amount;
