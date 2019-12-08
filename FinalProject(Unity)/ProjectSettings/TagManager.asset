@@ -7,7 +7,6 @@ TagManager:
   - Projectile
   - Enemy
   - HUD
-  - ShowOnPause
   - HealthBar
   - PistolAmmo
   - RifleAmmo
@@ -16,6 +15,7 @@ TagManager:
   - RifleEquip
   - ShotgunEquip
   - Item
+  - ShowControls
   layers:
   - Default
   - TransparentFX
