@@ -10,6 +10,7 @@ public class Rous_Soldier : MonoBehaviour
     public float turningSpeed;
     public float health;  
     public int rousState;
+    public float EATING_DETECTION_RANGE;
     public float NORMAL_DETECTION_RANGE;
     public float EXTENDED_DETECTION_RANGE;
 
@@ -36,13 +37,26 @@ public class Rous_Soldier : MonoBehaviour
     {        
         RunCycle();
     }
+
+    //-------------------------------------------------------Movement Functions-----------------------------------------
     void RunCycle() // Decides what the rous is doing
     {
         if (isAlive)
         {
             // check if in range or was shot
-            if (CheckForPlayer(detectionRange))
-                rousState = 1;
+            if (CheckForPlayer(detectionRange)) //if player is in range
+            {
+                if (playerPos.gameObject.GetComponent<PlayerScript>().IsPlayerDead())// player is alive
+                    rousState = 1;
+                else if(!playerPos.gameObject.GetComponent<PlayerScript>().IsPlayerDead()) // player is dead
+                {
+                    Debug.Log("Player is dead");
+                    if (CheckForPlayer(1.4f)) // if player is inrage of eating
+                        rousState = 2;
+                    else
+                        rousState = 1;
+                }
+            }
             else if (rousState != 2) // inorder to idle the Rous must of not been eating 
             {
                 detectionRange = NORMAL_DETECTION_RANGE;
@@ -53,7 +67,9 @@ public class Rous_Soldier : MonoBehaviour
             switch (rousState)
             {
                 case 0: //Rous is Idle
-                case 2: // Rous is Eating                         
+                    break;
+                case 2: // Rous is Eating
+                    detectionRange = EATING_DETECTION_RANGE;
                     break; // Do nothing
                 case 1:     // Rous is Pursing                     
                     PointToTarget(FindTarget());
@@ -82,6 +98,8 @@ public class Rous_Soldier : MonoBehaviour
         Vector3 forward = new Vector3(speed * cos, speed * sin, 0f); // turn direction into into a vector
         rbody.AddForce(forward * speed); // make the velocity to the direction Rous is facing
     }
+
+    //-----------------------------------------------------Rous Behavouir functions------------------------------------------------
     bool CheckForPlayer(float range)
     {
         float distance = Vector3.Distance(transform.position, playerPos.position);
@@ -96,7 +114,7 @@ public class Rous_Soldier : MonoBehaviour
     Vector3 FindTarget()
     {
         return playerPos.position - transform.position;
-    }
+    }   
     public void HitByBullet(float damage)
     {
         
@@ -119,14 +137,17 @@ public class Rous_Soldier : MonoBehaviour
 
 
 
-    }
+    }   
     private void OnCollisionEnter2D(Collision2D collisionObj)
     {
         if (collisionObj.gameObject.CompareTag("Player"))
         {
-            rbody.AddForce(-gameObject.transform.up*KNOCKBACK_FORCE);
-            Debug.Log($"Push\n{-FindTarget()}{-gameObject.transform.up * KNOCKBACK_FORCE}");
-            
+            if (playerPos.gameObject.GetComponent<PlayerScript>().IsPlayerDead())
+            {
+                rbody.AddForce(-gameObject.transform.up * KNOCKBACK_FORCE);                
+            }
+            else
+                rousState = 2;
         }
     }
 }

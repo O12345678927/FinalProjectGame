@@ -14,13 +14,17 @@ public class WeaponHUD : MonoBehaviour
     public Image rifleEquipped; // Drag Rifle image here
     public Image shotgunEquipped; // Drag Shotgun image here
 
+    public Color unequipedColour;
+    public Color equipedColour;
+    public Color black;
+
     // Start is called before the first frame update
     void Start()
     {
         // At the start all weapons are unequipped (color is black)
-        pistolEquipped.color = new Color32(0, 0, 0, 255);
-        rifleEquipped.color = new Color32(0, 0, 0, 255);
-        shotgunEquipped.color = new Color32(0, 0, 0, 255);
+        pistolEquipped.color = black;
+        rifleEquipped.color = black;
+        shotgunEquipped.color = black;
     }
 
     // Update is called once per frame
@@ -37,56 +41,58 @@ public class WeaponHUD : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha1)) // Unarmed
         {
             if (playerScript.inventory[1, 0] == 1) // Player has pistol
-                pistolEquipped.color = new Color32(45, 165, 180, 255); // (colour to grey-blue)
+                pistolEquipped.color = unequipedColour; // (colour to grey-blue)
             else
-                pistolEquipped.color = new Color32(0, 0, 0, 255); // (colour to black)
+                pistolEquipped.color = black; // (colour to black)
+
             if (playerScript.inventory[2, 0] == 1)
-                rifleEquipped.color = new Color32(45, 165, 180, 255);
+                rifleEquipped.color = unequipedColour;
             else
-                rifleEquipped.color = new Color32(0, 0, 0, 255);
+                rifleEquipped.color = black;
+
             if (playerScript.inventory[3, 0] == 1)
-                shotgunEquipped.color = new Color32(45, 165, 180, 255);
+                shotgunEquipped.color = unequipedColour;
             else
-                shotgunEquipped.color = new Color32(0, 0, 0, 255);
+                shotgunEquipped.color = black; 
         }
         else if (Input.GetKey(KeyCode.Alpha2) && playerScript.inventory[1, 0] == 1) // Pistol
         {
-            pistolEquipped.color = new Color32(255, 255, 255, 255);
+            pistolEquipped.color = equipedColour;
 
             if (playerScript.inventory[2, 0] == 1)
-                rifleEquipped.color = new Color32(45, 165, 180, 255);
+                rifleEquipped.color = unequipedColour;
             else
-                rifleEquipped.color = new Color32(0, 0, 0, 255);
+                rifleEquipped.color = black;
             if (playerScript.inventory[3, 0] == 1)
-                shotgunEquipped.color = new Color32(45, 165, 180, 255);
+                shotgunEquipped.color = unequipedColour;
             else
-                shotgunEquipped.color = new Color32(0, 0, 0, 255);
+                shotgunEquipped.color = black;
         }
         else if (Input.GetKey(KeyCode.Alpha3) && playerScript.inventory[2, 0] == 1) // Rifle
         {
-            rifleEquipped.color = new Color32(255, 255, 255, 255);
+            rifleEquipped.color = equipedColour;
 
             if (playerScript.inventory[1, 0] == 1)
-                pistolEquipped.color = new Color32(45, 165, 180, 255);
+                pistolEquipped.color = unequipedColour;
             else
-                pistolEquipped.color = new Color32(0, 0, 0, 255);
+                pistolEquipped.color = black;
             if (playerScript.inventory[3, 0] == 1)
-                shotgunEquipped.color = new Color32(45, 165, 180, 255);
+                shotgunEquipped.color = unequipedColour;
             else
-                shotgunEquipped.color = new Color32(0, 0, 0, 255);
+                shotgunEquipped.color = black;
         }
         else if (Input.GetKey(KeyCode.Alpha4) && playerScript.inventory[3, 0] == 1) // Shotgun
         {
-            shotgunEquipped.color = new Color32(255, 255, 255, 255);
+            shotgunEquipped.color = equipedColour;
 
             if (playerScript.inventory[1, 0] == 1)
-                pistolEquipped.color = new Color32(45, 165, 180, 255);
+                pistolEquipped.color = unequipedColour;
             else
-                pistolEquipped.color = new Color32(0, 0, 0, 255);
+                pistolEquipped.color = black;
             if (playerScript.inventory[2, 0] == 1)
-                rifleEquipped.color = new Color32(45, 165, 180, 255);
+                rifleEquipped.color = unequipedColour;
             else
-                rifleEquipped.color = new Color32(0, 0, 0, 255);
+                rifleEquipped.color = black;
         }
     }
 }

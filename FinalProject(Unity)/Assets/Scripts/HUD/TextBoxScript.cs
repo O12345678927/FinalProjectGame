@@ -5,18 +5,31 @@ using UnityEngine.UI;
 
 public class TextBoxScript : MonoBehaviour
 {
+    [Header("Message Properties")]
+    public bool isMessage;
     public bool wasTriggered;
     public string message;
     public float MessageTime;
 
-    public GameObject player;
-    public Image textBox; // Drag TextBox here
-    public Image border; // Drag Border here
-    public Text text; // Drag Text here
+    [Header("TeleporterProperties")]
+    public bool isTeleporter;
+    public bool isLocked; //default true
+    public Vector3 offset;
+    public Transform destination;
+
+    //private vars
+    private GameObject player;
+    private Image textBox;
+    private Image border; 
+    private Text text;
 
     // Start is called before the first frame update
     void Start()
-    {
+    {        
+        player = GameObject.Find("Player");
+        textBox = GameObject.Find("TextBox").GetComponentInChildren<Image>();
+        border = GameObject.Find("Border").GetComponent<Image>();
+        text = GameObject.Find("Text").GetComponent<Text>();
         HideTextBox(); // Hidden on game start
     }
 
@@ -29,15 +42,23 @@ public class TextBoxScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !wasTriggered)
+        if (isMessage)
         {
-            ShowTextBox(message, MessageTime);
-            wasTriggered = true;
-        }    
+            if (other.CompareTag("Player") && !wasTriggered)
+            {
+                ShowTextBox(message, MessageTime);
+                wasTriggered = true;
+            }
+        }
+        if (isTeleporter && !isLocked)
+        {
+            other.transform.position = destination.position + offset;
+            Debug.Log(other.transform.position);
+        }
     }
 
     // Call this to show text: (string [text you want to output], float [how many seconds it will stay on screen])
-    void ShowTextBox(string newText, float seconds)
+    public void ShowTextBox(string newText, float seconds)
     {
         textBox.enabled = true;
         border.enabled = true;
@@ -46,5 +67,5 @@ public class TextBoxScript : MonoBehaviour
 
         // Closes the textbox after {seconds} seconds
         Invoke("HideTextBox", seconds);
-    }    
+    }       
 }

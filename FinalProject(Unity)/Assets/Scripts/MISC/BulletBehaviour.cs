@@ -67,7 +67,7 @@ public class BulletBehaviour : MonoBehaviour
         if (!areaObject.gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
-            Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
+            //Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the collision {areaObject.gameObject.name.ToString()}!");
         }
         if (areaObject.gameObject.CompareTag("Enemy")) // An Enemy has been hit
         {
@@ -75,12 +75,12 @@ public class BulletBehaviour : MonoBehaviour
             if (!(enemy.GetComponent(typeof(Rous_Soldier)) == null))
             {
                 enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
-                Debug.Log($"Hit Rous!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
+                //Debug.Log($"Hit Rous!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
             }
             else if (!(enemy.GetComponent(typeof(Fauna)) == null))
             {
                 enemy.GetComponent<Fauna>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
-                Debug.Log($"Hit Fauna!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
+                //Debug.Log($"Hit Fauna!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
             }
         }        
     }
@@ -90,11 +90,11 @@ public class BulletBehaviour : MonoBehaviour
         if (!areaObject.CompareTag("Player") && !areaObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
-            Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the trigger {areaObject.gameObject.name.ToString()}!");
+            //Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the trigger {areaObject.gameObject.name.ToString()}!");
         }
         else
         {
-            Debug.Log($"{gameObject.name.ToString()} Hit the player");
+            //Debug.Log($"{gameObject.name.ToString()} Hit the player");
         }
     }
     void FixedUpdate()

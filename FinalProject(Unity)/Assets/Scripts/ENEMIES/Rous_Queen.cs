@@ -38,7 +38,7 @@ public class Rous_Queen : MonoBehaviour
             {
                 stateTime = fireRate;
                 LaunchBalls();
-                Debug.Log("BALLS HAVE BEEN\nL A U N C H E D");
+                //Debug.Log("BALLS HAVE BEEN\nL A U N C H E D");
             }
         }
 

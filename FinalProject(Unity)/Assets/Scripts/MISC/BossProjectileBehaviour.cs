@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehaviour : MonoBehaviour
+public class BossProjectileBehaviour : MonoBehaviour
 {
     public float dragCoef = 0.97f;
     public float tracerSize = 0.2f;

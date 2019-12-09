@@ -226,8 +226,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy") && damageTimer < Time.fixedDeltaTime)
         {
-            damageTimer = invulnerabilityTime;
-            Debug.Log($"Invulnerability time!\n{invulnerabilityTime} seconds");
+            damageTimer = invulnerabilityTime;            
             Vector3 recoil;
             GameObject hitBy = other.gameObject;
             if (!(hitBy.GetComponent(typeof(Rous_Soldier)) == null))
@@ -260,6 +259,7 @@ public class PlayerScript : MonoBehaviour
             playerIsAlive = false;
             animator.SetBool("isDead", true);
             Destroy(rbody);
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
         }
         else if (health < 25) // drop low damaged blood splatter
             Instantiate(blood[2], transform.position, transform.rotation);
@@ -286,10 +286,11 @@ public class PlayerScript : MonoBehaviour
             inventory[weaponIndex, 1] = (int)Mathf.Min(inventory[weaponIndex, 1] + ammoQuantity, weaponDataArray[weaponIndex][3]);
         }
     }
-
-    //---------------------------------Scripting Functions---------------------------------------
-    public void FreezePlayer(float time)
-    {
-        playerIsFrozen = true;
+    public bool IsPlayerDead()
+    {       
+        return playerIsAlive;
     }
+    
+   
+
 }
