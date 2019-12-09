@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 offset;
+    public Transform destination;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D toPort)
     {
-        
+        toPort.transform.position = destination.position + offset;
+        Debug.Log(toPort.transform.position);
     }
 }
