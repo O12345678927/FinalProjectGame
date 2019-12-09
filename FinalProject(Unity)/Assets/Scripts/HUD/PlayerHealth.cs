@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // At the start of the game the player has full health
         currentHealth = maxHealth;
+        HealthBar.value = currentHealth;
     }
 
     private void Update()
