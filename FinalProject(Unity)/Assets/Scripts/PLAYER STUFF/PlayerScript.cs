@@ -286,4 +286,10 @@ public class PlayerScript : MonoBehaviour
             inventory[weaponIndex, 1] = (int)Mathf.Min(inventory[weaponIndex, 1] + ammoQuantity, weaponDataArray[weaponIndex][3]);
         }
     }
+
+    //---------------------------------Scripting Functions---------------------------------------
+    public void FreezePlayer(float time)
+    {
+        playerIsFrozen = true;
+    }
 }
