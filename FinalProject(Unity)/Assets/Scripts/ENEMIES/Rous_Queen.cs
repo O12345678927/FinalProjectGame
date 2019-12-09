@@ -17,40 +17,46 @@ public class Rous_Queen : MonoBehaviour
     //private var
     private bool isAlive = true;
     private float currentTime = 0;
-    readonly float[][] poisonBallDataArray = {  new float[] { 20, 15, 1.0f}, // poison ball                                            
-                                            new float[] { 15, 20, 1.0f}};   // seeking posin ball
-                                                                                   //{velocity, damage, spread, coef, maxAmmo}
+
+    private const float BULLET_SIZE = 0.333f;
+    private const float SINE_FREQUENCY = 3.0f;
+    private const float SINE_AMPLITUDE = 0.333f;
+    readonly float[][] poisonBallDataArray = {  new float[] { 12.5f, 15, 1.0f}, // poison ball                                            
+                                            new float[] { 7.5f, 20, 1.0f}};   // seeking posin ball
+                                                                            //{velocity, damage, spread}
 
     void Start()
     {
-        poisonBall.GetComponent<SpriteRenderer>().sprite = poisonBallImage;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-           
+        //poisonBall.GetComponent<SpriteRenderer>().sprite = poisonBallImage;
+        //Destroy(poisonBall.transform.GetChild(0));
     }
     void FixedUpdate()
     {
         if (isAlive && engagedWithPlayer)
-        {            
-            if (currentTime >= fireRate)
-            {                
+        {
+            if (stateTime < Time.fixedDeltaTime)
+            {
+                stateTime = fireRate;
                 LaunchBalls();
-                currentTime = fireRate;
+                Debug.Log("BALLS HAVE BEEN\nL A U N C H E D");
             }
         }
 
-        if (currentTime <= fireRate)
-            currentTime++;
+        if (stateTime > Time.fixedDeltaTime)
+        {
+            stateTime -= Time.fixedDeltaTime;
+        }
         else
-            currentTime = 0f;
+        {
+            stateTime = 0;
+        }
+            
     }
     void LaunchBalls() // Launches the posinballs
     {        
         for (int i = 0; i < launchPos.Length; i++)
         {
-            InitializeBullet(poisonBall, launchPos[i], 0f, poisonBallDataArray[0]);
+            FireSlime(launchPos[i], Mathf.Sin(Time.time*SINE_FREQUENCY)*SINE_AMPLITUDE, poisonBallDataArray[0]);
         }
         //for (int i = 0; i < seekingLaunchPos.Length; i++)
         //{
@@ -61,10 +67,16 @@ public class Rous_Queen : MonoBehaviour
     {
         return playerPos.position - transform.position;
     }
-    void InitializeBullet(GameObject bulletObject, Transform transform, float spread, float[] weaponDataArray)
-    {        
-        Vector3 tempVec = new Vector3(0f,-1f,0f);
-        bulletObject.GetComponent<Rigidbody2D>().velocity = tempVec;
-        bulletObject.GetComponent<BulletBehaviour>().Initialize(weaponDataArray);
+    void FireSlime(Transform transform, float spread, float[] weaponDataArray)
+    {
+        GameObject projectile;
+        projectile = (GameObject)Instantiate(poisonBall, transform.position, transform.rotation * Quaternion.Euler(0, 0, -90));
+        Vector3 tempVec;
+        tempVec = (-transform.up);
+        float tempAngle = Mathf.Atan2(tempVec.y - transform.position.y, tempVec.x - transform.position.x) + spread;
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(weaponDataArray[0] * Mathf.Cos(tempAngle), weaponDataArray[0] * Mathf.Sin(tempAngle));
+        projectile.GetComponent<BulletBehaviour>().Initialize(weaponDataArray);
+        projectile.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), projectile.GetComponent<Collider2D>());
     }
 }
