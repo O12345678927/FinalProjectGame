@@ -17,6 +17,10 @@ public class TextBoxScript : MonoBehaviour
     public Vector3 offset;
     public Transform destination;
 
+    [Header("LockedMessage")]
+    public string lockedMessage;
+    public float lockedMessageTime;
+
     //private vars
     private GameObject player;
     private Image textBox;
@@ -46,14 +50,23 @@ public class TextBoxScript : MonoBehaviour
         {
             if (other.CompareTag("Player") && !wasTriggered)
             {
-                ShowTextBox(message, MessageTime);
-                wasTriggered = true;
+                if (isLocked)
+                    ShowTextBox(lockedMessage, MessageTime);
+                else
+                {
+                    ShowTextBox(message, MessageTime);
+                    wasTriggered = true;
+                }
             }
         }
         if (isTeleporter && !isLocked)
         {
             other.transform.position = destination.position + offset;
             Debug.Log(other.transform.position);
+        }
+        else if(isLocked)
+        {
+            ShowTextBox(lockedMessage, lockedMessageTime);
         }
     }
 
@@ -62,14 +75,13 @@ public class TextBoxScript : MonoBehaviour
     {
         if (textBox.enabled == true)
         {
-            CancelInvoke("HideTextBox");
-            Invoke("HideTextBox", seconds);
-        }
-        else
-            Invoke("HideTextBox", seconds); // Closes the textbox after {seconds} seconds
+            CancelInvoke("HideTextBox");            
+        }        
+        Invoke("HideTextBox", seconds); // Closes the textbox after {seconds} seconds
         textBox.enabled = true;
         border.enabled = true;
         text.enabled = true;
         text.text = newText;
-    }       
+    }
+    
 }

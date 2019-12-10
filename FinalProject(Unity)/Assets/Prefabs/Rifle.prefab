@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 2
-  quantity: 24
+  quantity: 36
   isWeapon: 1
 --- !u!61 &6171196910778041901
 BoxCollider2D:
