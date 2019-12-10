@@ -155,6 +155,7 @@ MonoBehaviour:
   speed: 28
   turningSpeed: 7
   health: 180
+  damage: 10
   rousState: 0
   EATING_DETECTION_RANGE: 3.5
   NORMAL_DETECTION_RANGE: 5

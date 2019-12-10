@@ -8,7 +8,8 @@ public class Rous_Soldier : MonoBehaviour
     [Header("Stats:")]
     public float speed;
     public float turningSpeed;
-    public float health;  
+    public float health;
+    public float damage;
     public int rousState;
     public float EATING_DETECTION_RANGE;
     public float NORMAL_DETECTION_RANGE;

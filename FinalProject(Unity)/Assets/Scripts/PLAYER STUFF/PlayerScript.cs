@@ -233,7 +233,7 @@ public class PlayerScript : MonoBehaviour
             {
                 recoil = transform.position - hitBy.transform.position;
                 recoil.Normalize();
-                ApplyDamage(10f, recoil * 10000f);
+                ApplyDamage(other.gameObject.GetComponent<Rous_Soldier>().damage, recoil * 10000f);
             }
             else if (!(hitBy.GetComponent(typeof(Fauna)) == null))
             {
