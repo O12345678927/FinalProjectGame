@@ -60,12 +60,16 @@ public class TextBoxScript : MonoBehaviour
     // Call this to show text: (string [text you want to output], float [how many seconds it will stay on screen])
     public void ShowTextBox(string newText, float seconds)
     {
+        if (textBox.enabled == true)
+        {
+            CancelInvoke("HideTextBox");
+            Invoke("HideTextBox", seconds);
+        }
+        else
+            Invoke("HideTextBox", seconds); // Closes the textbox after {seconds} seconds
         textBox.enabled = true;
         border.enabled = true;
         text.enabled = true;
         text.text = newText;
-
-        // Closes the textbox after {seconds} seconds
-        Invoke("HideTextBox", seconds);
     }       
 }
