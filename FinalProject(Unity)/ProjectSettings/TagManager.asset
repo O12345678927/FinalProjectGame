@@ -19,6 +19,7 @@ TagManager:
   - PlayerDetector
   - TextBox
   - TextBoxText
+  - StartScreen
   layers:
   - Default
   - TransparentFX
