@@ -7,7 +7,11 @@ public class Restart : MonoBehaviour
 {
     void Update()
     {
+        // Restart Game
         if (Input.GetKeyDown(KeyCode.Return))
             SceneManager.LoadScene(0);
+        // Quit Game
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
     }
 }

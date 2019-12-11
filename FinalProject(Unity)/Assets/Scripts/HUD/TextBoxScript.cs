@@ -9,7 +9,6 @@ public class TextBoxScript : MonoBehaviour
     public bool isMessage;
     public bool wasTriggered;
     public string message;
-    public float MessageTime;
 
     [Header("TeleporterProperties")]
     public bool isTeleporter;
@@ -37,6 +36,12 @@ public class TextBoxScript : MonoBehaviour
         HideTextBox(); // Hidden on game start
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            HideTextBox();
+    }
+
     void HideTextBox()
     {
         textBox.enabled = false;
@@ -51,10 +56,10 @@ public class TextBoxScript : MonoBehaviour
             if (other.CompareTag("Player") && !wasTriggered)
             {
                 if (isLocked)
-                    ShowTextBox(lockedMessage, MessageTime);
+                    ShowTextBox(lockedMessage);
                 else
                 {
-                    ShowTextBox(message, MessageTime);
+                    ShowTextBox(message);
                     wasTriggered = true;
                 }
             }
@@ -66,18 +71,13 @@ public class TextBoxScript : MonoBehaviour
         }
         else if(isLocked)
         {
-            ShowTextBox(lockedMessage, lockedMessageTime);
+            ShowTextBox(lockedMessage);
         }
     }
 
     // Call this to show text: (string [text you want to output], float [how many seconds it will stay on screen])
-    public void ShowTextBox(string newText, float seconds)
+    public void ShowTextBox(string newText)
     {
-        if (textBox.enabled == true)
-        {
-            CancelInvoke("HideTextBox");            
-        }        
-        Invoke("HideTextBox", seconds); // Closes the textbox after {seconds} seconds
         textBox.enabled = true;
         border.enabled = true;
         text.enabled = true;
