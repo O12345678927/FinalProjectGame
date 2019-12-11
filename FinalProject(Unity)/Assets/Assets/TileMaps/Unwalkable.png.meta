@@ -59,6 +59,15 @@ TextureImporter:
   - first:
       213: -5291114632077129238
     second: Unwalkable_18
+  - first:
+      213: 5662283873487017832
+    second: Unwalkable_19
+  - first:
+      213: 474208751865059531
+    second: Unwalkable_20
+  - first:
+      213: 2286129937888341055
+    second: Unwalkable_21
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -529,7 +538,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -537,6 +546,69 @@ TextureImporter:
       bones: []
       spriteID: 765eb331a710e0a408243a0d43a39474
       internalID: -5291114632077129238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_19
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c77927642c8f174da50885d1abbb4d3
+      internalID: 5662283873487017832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_20
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fffeee1c5a514b4499806aa99df7d8ad
+      internalID: 474208751865059531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Unwalkable_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dff49c138b9c4004d86e8dcb1ce0a722
+      internalID: 2286129937888341055
       vertices: []
       indices: 
       edges: []
