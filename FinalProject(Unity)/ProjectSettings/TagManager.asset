@@ -20,6 +20,7 @@ TagManager:
   - TextBox
   - TextBoxText
   - StartScreen
+  - Restart
   layers:
   - Default
   - TransparentFX
