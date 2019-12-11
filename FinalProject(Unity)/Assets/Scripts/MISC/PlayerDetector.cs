@@ -8,6 +8,7 @@ public class PlayerDetector : MonoBehaviour
     //public var
     public Camera mainCamera;
     public float changeRate;
+    public GameObject boss;
   
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,7 +16,9 @@ public class PlayerDetector : MonoBehaviour
         {
             Debug.Log("EnterBossArea");
             mainCamera.GetComponent<CameraBehaviour>().SetChangeRate(changeRate);
+            boss.GetComponent<Rous_Queen>().engagedWithPlayer = true;
         }
+        
     }
     void OnTriggerExit2D(Collider2D other)
     {

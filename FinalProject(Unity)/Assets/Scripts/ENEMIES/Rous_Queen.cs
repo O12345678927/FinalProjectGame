@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rous_Queen : MonoBehaviour
 {
     //public var
-    public bool engagedWithPlayer = true;
+    public bool engagedWithPlayer;
     public float stateTime;
     public float fireRate;
     public GameObject poisonBall;
@@ -29,7 +29,7 @@ public class Rous_Queen : MonoBehaviour
     {
         //poisonBall.GetComponent<SpriteRenderer>().sprite = poisonBallImage;
         //Destroy(poisonBall.transform.GetChild(0));
-    }
+    }   
     void FixedUpdate()
     {
         if (isAlive && engagedWithPlayer)

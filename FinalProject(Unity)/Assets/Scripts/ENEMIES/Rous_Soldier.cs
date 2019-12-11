@@ -19,6 +19,8 @@ public class Rous_Soldier : MonoBehaviour
     
     public Animator animator;    
     public GameObject[] blood;
+    public float rotationValue;
+    public bool dropBlood;
 
     //private var    
     private Rigidbody2D rbody;
@@ -84,7 +86,7 @@ public class Rous_Soldier : MonoBehaviour
     void PointToTarget(Vector3 currentTarget)
     {
         float angle;
-        angle = Mathf.Atan2(currentTarget.y, currentTarget.x) * Mathf.Rad2Deg - 90f;
+        angle = Mathf.Atan2(currentTarget.y, currentTarget.x) * Mathf.Rad2Deg + rotationValue;
         //distance = Vector3.Distance(playerPos.position, transform.position); for future use to change turn speed based on how close the Rous is to the player
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -129,11 +131,11 @@ public class Rous_Soldier : MonoBehaviour
             Destroy(gameObject.GetComponent<CapsuleCollider2D>());
             
         }        
-        else if (health < 40) // drop low damaged blood splatter
+        else if (health < 40 && dropBlood) // drop low damaged blood splatter
             Instantiate(blood[2], transform.position, transform.rotation);
-        else if (health < 90) // drop medium damaged blood splatter
+        else if (health < 90 && dropBlood) // drop medium damaged blood splatter
             Instantiate(blood[1], transform.position, transform.rotation);
-        else // drop high damaged blood splatter
+        else if (dropBlood) // drop high damaged blood splatter
             Instantiate(blood[0], transform.position, transform.rotation);
 
 

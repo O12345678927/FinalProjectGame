@@ -37,9 +37,9 @@ public class PlayerScript : MonoBehaviour
     private float chamberTime = 0;
 
     readonly float[][] weaponDataArray = {  new float[] { 0, 0, 0, 0 },         //Unarmed
-                                            new float[] { 50, 2000f, 0.95f, -1},     //pistol
-                                            new float[] { 66, 44f, 0.97f, 240},     //rifle
-                                            new float[] { 100, 30f, 0.75f, 36}};   //shotgun
+                                            new float[] { 50, 28f, 0.95f, -1},     //pistol
+                                            new float[] { 66, 52f, 0.97f, 256},     //rifle
+                                            new float[] { 100, 30f, 0.75f, 64}};   //shotgun
                                                                                 //{velocity, damage, coef, maxAmmo}
 
     void Start()
@@ -188,7 +188,7 @@ public class PlayerScript : MonoBehaviour
                 if (Input.GetButton("Fire1") && chamberTime < Time.deltaTime && inventory[2, 1] > 0)
                 {
                     FireWeapon(2, transform, Random.Range(-0.1f, 0.1f), weaponDataArray[2]);
-                    chamberTime = 0.12f;
+                    chamberTime = 0.18f;
                     inventory[2, 1]--;
                 }
                 else

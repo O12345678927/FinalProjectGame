@@ -165,3 +165,5 @@ MonoBehaviour:
   - {fileID: 3029624673022531028, guid: 3b452140ad84a1f4ea6c2982a881b188, type: 3}
   - {fileID: 6286159136862055325, guid: d8930fc57b1bb00458911a1946ce0802, type: 3}
   - {fileID: 3562164960640976819, guid: 347cae034770c5f4dbdd2e852b611cc8, type: 3}
+  rotationValue: -90
+  dropBlood: 1
