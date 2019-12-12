@@ -5,24 +5,26 @@ using UnityEngine;
 public class Poison_Ball : MonoBehaviour
 {
     //public var
-    public float speed;
+    public float poisonSpeed;
     public float damage;
 
-    //private var
-    private Rigidbody2D rbody;
-    private GameObject boss;
+    //Defining variables at start except calling them at start ends up in NullReferenceExceptions!
 
-    // Start is called before the first frame update
-    void Start()
+    public void Launch(float spread)
     {
-        rbody = gameObject.GetComponent<Rigidbody2D>();
-        boss = GameObject.Find("RousQueen");
-        Launch();
+        Debug.Log(GameObject.Find("RousQueen").name.ToString());
+        Vector3 forward = GameObject.Find("RousQueen").GetComponent<Rous_Queen>().FindForwardVector().normalized;
+        Debug.Log(forward);
+        forward = Quaternion.AngleAxis(spread, Vector3.forward) * forward;
+        Debug.Log(forward);
+        gameObject.GetComponent<Rigidbody2D>().velocity = (forward * poisonSpeed);
     }
-    void Launch()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 forward = boss.GetComponent<Rous_Queen>().FindForwardVector();
-        rbody.AddForce(forward * speed);
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
-    
+
 }

@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour
     void FixedUpdate()
     {
         if (playerIsAlive)
-            movePlayer();
+            MovePlayer();
         if (damageTimer > Time.fixedDeltaTime)        
             damageTimer -= Time.fixedDeltaTime;       
         else
@@ -86,7 +86,7 @@ public class PlayerScript : MonoBehaviour
         else
             animator.SetBool("isMoving", false);
     }
-    void movePlayer()
+    void MovePlayer()
     {
         horiz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
@@ -221,30 +221,32 @@ public class PlayerScript : MonoBehaviour
     //--------------------------------- Damage functions ----------------------------------------
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy") && damageTimer < Time.fixedDeltaTime)
+        if ((other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("Projectile")) && damageTimer < Time.fixedDeltaTime)
         {
             damageTimer = invulnerabilityTime;            
             Vector3 recoil;
             GameObject hitBy = other.gameObject;
+
+            recoil = transform.position - hitBy.transform.position;
+            recoil.Normalize();
+
             if (!(hitBy.GetComponent(typeof(Rous_Soldier)) == null))
             {
-                recoil = transform.position - hitBy.transform.position;
-                recoil.Normalize();
-                ApplyDamage(other.gameObject.GetComponent<Rous_Soldier>().damage, recoil * 10000f);
+                ApplyDamage(hitBy.GetComponent<Rous_Soldier>().damage, recoil * 10000f);
             }
             else if (!(hitBy.GetComponent(typeof(Fauna)) == null))
             {
-                recoil = transform.position - hitBy.transform.position;
-                recoil.Normalize();
                 ApplyDamage(1f, recoil * 2500f);
             }
             else if (!(hitBy.GetComponent(typeof(Rous_Queen)) == null))
             {
-                recoil = transform.position - hitBy.transform.position;
-                recoil.Normalize();
-                ApplyDamage(other.gameObject.GetComponent<Rous_Queen>().damage, recoil * 5500f);
+                ApplyDamage(hitBy.GetComponent<Rous_Queen>().damage, recoil * 5500f);
+            }else if (!(hitBy.GetComponent(typeof(Poison_Ball)) == null))
+            {
+                Debug.Log("Hit by poison ball");
+                ApplyDamage(hitBy.GetComponent<Poison_Ball>().damage, recoil * 1000f);
+                Destroy(hitBy);
             }
-            //Add more for poin balls
         }
     }     
     void ApplyDamage(float amount, Vector3 recoil)

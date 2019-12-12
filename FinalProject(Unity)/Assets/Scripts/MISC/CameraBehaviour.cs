@@ -10,7 +10,8 @@ public class CameraBehaviour : MonoBehaviour
     //private var
     private Vector3 cameraPosition;
     private float changeRate = 0;
-   
+
+
     void Update()
     {
         cameraPosition = new Vector3(cameraTarget.transform.position.x, cameraTarget.transform.position.y, -10f);

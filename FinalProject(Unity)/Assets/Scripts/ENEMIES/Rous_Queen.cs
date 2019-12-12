@@ -30,14 +30,25 @@ public class Rous_Queen : MonoBehaviour
     private float detectionRange;
     private Transform playerPos;    
     private const int KNOCKBACK_FORCE = 7500;
-    private float fireRateTimer;
+    private const float FIRE_COOLDOWN = 1f;
+    private const float WAVE_CYCLE_SCALE = 60f;
+    private const float WAVE_SPREAD_SCALE = 25f;
+    private const float WAVE_MINIMUM_ANGLE = 0.6666667f;
+    private const float WAVE_ARM_SPREAD_SCALE = 7.5f;
+    private float fireRateTimer = 0;
+    private GameObject tempProjectile;
 
 
     void Start()
     {
         playerPos = GameObject.Find("Player").GetComponent<Transform>();
         rbody = gameObject.GetComponent<Rigidbody2D>();
-        detectionRange = NORMAL_DETECTION_RANGE;        
+        detectionRange = NORMAL_DETECTION_RANGE;
+
+
+        Physics2D.IgnoreLayerCollision(0, 10); //For rous queen and the projectiles
+        Physics2D.IgnoreLayerCollision(9, 10);
+        Physics2D.IgnoreLayerCollision(10, 10); 
     }
     void FixedUpdate()
     {
@@ -78,8 +89,17 @@ public class Rous_Queen : MonoBehaviour
                     break; // Do nothing
                 case 1:     // Rous is Pursing                     
                     PointToTarget(FindTarget());
-                    ShootBalls();
                     Move();
+                    if (fireRateTimer < Time.fixedDeltaTime)
+                    {
+
+                        fireRateTimer = FIRE_COOLDOWN;
+                        ShootBalls();
+                    }
+                    else
+                    {
+                        fireRateTimer -= Time.fixedDeltaTime;
+                    }
                     break;
                 default:
                     break;
@@ -163,22 +183,31 @@ public class Rous_Queen : MonoBehaviour
     //----------------------------------------------------Rous Shooting stuff-----------------------------------------------------
     void ShootBalls()
     {
-
-        if (fireRateTimer < Time.fixedDeltaTime)
+        float spread;
+        for (int i = 0; i < launchPoints.Length; i++)
         {
-
-            fireRateTimer -= Time.fixedDeltaTime;
-            for (int i = 0; i < launchPoints.Length; i++)
+            switch (i)
             {
-                Instantiate(projectile, launchPoints[0].transform.position, Quaternion.Euler(0f, 0f, 0f));
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    spread = -(Mathf.Sin(Time.time * Mathf.Deg2Rad * WAVE_CYCLE_SCALE) + WAVE_MINIMUM_ANGLE) * WAVE_SPREAD_SCALE - (3 - i) * WAVE_ARM_SPREAD_SCALE;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    spread = (Mathf.Sin(Time.time * Mathf.Deg2Rad * WAVE_CYCLE_SCALE) + WAVE_MINIMUM_ANGLE) * WAVE_SPREAD_SCALE + (i - 4) * WAVE_ARM_SPREAD_SCALE;
+                    break;
+                default:
+                    spread = 0;
+                    break;
             }
-        }
-        else
-        {
-            if (fireRateTimer > Time.fixedDeltaTime)
-                fireRateTimer -= Time.fixedDeltaTime;
-            else
-                fireRateTimer = 0;
-        }        
+
+            tempProjectile = Instantiate(projectile, launchPoints[i].transform.position, Quaternion.Euler(0f, 0f, 0f));
+            tempProjectile.GetComponent<Poison_Ball>().Launch(spread);
+
+        }      
     }
 }
