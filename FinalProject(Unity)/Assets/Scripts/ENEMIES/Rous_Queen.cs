@@ -46,9 +46,11 @@ public class Rous_Queen : MonoBehaviour
         detectionRange = NORMAL_DETECTION_RANGE;
 
 
-        Physics2D.IgnoreLayerCollision(0, 10); //For rous queen and the projectiles
-        Physics2D.IgnoreLayerCollision(9, 10);
-        Physics2D.IgnoreLayerCollision(10, 10); 
+
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Projectile_enemy"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile_enemy"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile_enemy"), LayerMask.NameToLayer("Projectile_enemy"));
     }
     void FixedUpdate()
     {
