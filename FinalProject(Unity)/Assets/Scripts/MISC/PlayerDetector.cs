@@ -16,7 +16,6 @@ public class PlayerDetector : MonoBehaviour
         {
             Debug.Log("EnterBossArea");
             mainCamera.GetComponent<CameraBehaviour>().SetChangeRate(changeRate);
-            boss.GetComponent<Rous_Queen>().engagedWithPlayer = true;
         }
         
     }

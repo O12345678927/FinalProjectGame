@@ -19,6 +19,7 @@ public class BulletBehaviour : MonoBehaviour
     private float physAbsVelocity;
     private float physDirection;
     private bool useTurbulence = false;
+
     private float turbulenceRate;
     private float turbulenceVelocity;
     private float initialVelocity;
@@ -74,13 +75,11 @@ public class BulletBehaviour : MonoBehaviour
             GameObject enemy = areaObject.gameObject;
             if (!(enemy.GetComponent(typeof(Rous_Soldier)) == null))
             {
-                enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
-                //Debug.Log($"Hit Rous!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
+                enemy.GetComponent<Rous_Soldier>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));                
             }
             else if (!(enemy.GetComponent(typeof(Fauna)) == null))
             {
-                enemy.GetComponent<Fauna>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));
-                //Debug.Log($"Hit Fauna!\nDamage: {initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity)}");
+                enemy.GetComponent<Fauna>().HitByBullet(initialDamage * Mathf.Sqrt(physAbsVelocity / initialVelocity));                
             }
         }        
     }
@@ -89,13 +88,8 @@ public class BulletBehaviour : MonoBehaviour
         //Check if it's the player, update the game in the future to not only look for the player entity, for example: bullets can hit other bullets!
         if (!areaObject.CompareTag("Player") && !areaObject.CompareTag("Projectile"))
         {
-            Destroy(gameObject);
-            //Debug.Log($"{gameObject.gameObject.name.ToString()} has hit the trigger {areaObject.gameObject.name.ToString()}!");
-        }
-        else
-        {
-            //Debug.Log($"{gameObject.name.ToString()} Hit the player");
-        }
+            Destroy(gameObject);           
+        }       
     }
     void FixedUpdate()
     {

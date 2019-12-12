@@ -40,8 +40,7 @@ public class PlayerScript : MonoBehaviour
                                             new float[] { 50, 28f, 0.95f, -1},     //pistol
                                             new float[] { 66, 52f, 0.97f, 256},     //rifle
                                             new float[] { 100, 30f, 0.75f, 64}};   //shotgun
-                                                                                //{velocity, damage, coef, maxAmmo}
-
+                                                                                   //{velocity, damage, coef, maxAmmo}
     void Start()
     {
         rbody = gameObject.GetComponent<Rigidbody2D>();
@@ -53,12 +52,10 @@ public class PlayerScript : MonoBehaviour
         }
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Projectile"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Projectile"), LayerMask.NameToLayer("Player"));
-
-
     }
     void FixedUpdate()
     {
-        if (playerIsAlive && !playerIsFrozen)
+        if (playerIsAlive)
             movePlayer();
         if (damageTimer > Time.fixedDeltaTime)        
             damageTimer -= Time.fixedDeltaTime;       
@@ -67,7 +64,7 @@ public class PlayerScript : MonoBehaviour
     }
     void Update()
     {
-        if (playerIsAlive && !playerIsFrozen)
+        if (playerIsAlive)
         {
             ChangeDirection();
             WeaponListener();
@@ -245,7 +242,7 @@ public class PlayerScript : MonoBehaviour
             {
                 recoil = transform.position - hitBy.transform.position;
                 recoil.Normalize();
-                ApplyDamage(80f, recoil * 2500f);
+                ApplyDamage(other.gameObject.GetComponent<Rous_Queen>().damage, recoil * 5500f);
             }
             //Add more for poin balls
         }
