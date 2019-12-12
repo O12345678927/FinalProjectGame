@@ -22,7 +22,7 @@ public class CameraBehaviour : MonoBehaviour
     {
         if (changeRate > 0) // camera is increasing in size
         {
-            //Debug.Log("Increase size of camera");
+            Debug.Log("Increase size of camera");
             if (gameObject.GetComponent<Camera>().orthographicSize < 8)
                 gameObject.GetComponent<Camera>().orthographicSize += changeRate;
             else
@@ -30,7 +30,7 @@ public class CameraBehaviour : MonoBehaviour
         }
         else if (changeRate < 0) // camera is decreasing in size
         {
-            //Debug.Log("Decrease size of Camera");
+            Debug.Log("Decrease size of Camera");
             if(gameObject.GetComponent<Camera>().orthographicSize > 5)// check if camera is the correct size
                 gameObject.GetComponent<Camera>().orthographicSize += changeRate;
             else

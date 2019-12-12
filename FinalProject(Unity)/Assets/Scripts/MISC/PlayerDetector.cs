@@ -7,14 +7,12 @@ public class PlayerDetector : MonoBehaviour
     // Start is called before the first frame update
     //public var
     public Camera mainCamera;
-    public float changeRate;
-    public GameObject boss;
+    public float changeRate;    
   
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("EnterBossArea");
+        {           
             mainCamera.GetComponent<CameraBehaviour>().SetChangeRate(changeRate);
         }
         
@@ -22,8 +20,7 @@ public class PlayerDetector : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("ExitBossArea");
+        {           
             mainCamera.GetComponent<CameraBehaviour>().SetChangeRate(-changeRate);
         }
     }

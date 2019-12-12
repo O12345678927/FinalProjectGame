@@ -11,12 +11,9 @@ public class Poison_Ball : MonoBehaviour
     //Defining variables at start except calling them at start ends up in NullReferenceExceptions!
 
     public void Launch(float spread)
-    {
-        Debug.Log(GameObject.Find("RousQueen").name.ToString());
-        Vector3 forward = GameObject.Find("RousQueen").GetComponent<Rous_Queen>().FindForwardVector().normalized;
-        Debug.Log(forward);
-        forward = Quaternion.AngleAxis(spread, Vector3.forward) * forward;
-        Debug.Log(forward);
+    {        
+        Vector3 forward = GameObject.Find("RousQueen").GetComponent<Rous_Queen>().FindForwardVector().normalized;        
+        forward = Quaternion.AngleAxis(spread, Vector3.forward) * forward;        
         gameObject.GetComponent<Rigidbody2D>().velocity = (forward * poisonSpeed);
     }
     private void OnCollisionEnter2D(Collision2D collision)
