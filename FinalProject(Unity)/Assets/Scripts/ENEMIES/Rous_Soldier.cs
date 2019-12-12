@@ -53,7 +53,7 @@ public class Rous_Soldier : MonoBehaviour
                     rousState = 1;
                 else if(!playerPos.gameObject.GetComponent<PlayerScript>().IsPlayerDead()) // player is dead
                 {
-                    Debug.Log("Player is dead");
+                    //Debug.Log("Player is dead");
                     if (CheckForPlayer(1.4f)) // if player is inrage of eating
                         rousState = 2;
                     else

@@ -98,7 +98,6 @@ public class Fauna : MonoBehaviour
     {
 
         health = health - damage;
-        Debug.Log("Fauna Health: " + health);
         detectionRange = 12f;
         if (health < 0) // its dead now
         {

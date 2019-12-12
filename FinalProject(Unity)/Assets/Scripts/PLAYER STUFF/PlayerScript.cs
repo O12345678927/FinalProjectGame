@@ -278,7 +278,7 @@ public class PlayerScript : MonoBehaviour
         {
             inventory[weaponIndex, 0] = 1; // The weapon is selected
             inventory[weaponIndex, 1] += ammoQuantity;
-            Debug.Log("Ammo of Ammo type" + weaponIndex + " = " + inventory[weaponIndex, 1]);
+            //Debug.Log("Ammo of Ammo type" + weaponIndex + " = " + inventory[weaponIndex, 1]);
         }
         else // if the item is not a weapon or a health pack then it is ammo
         {           
