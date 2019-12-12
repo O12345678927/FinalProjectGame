@@ -31,7 +31,6 @@ public class PlayerScript : MonoBehaviour
     private ushort weaponIndex = 0;
     private float damageTimer = 0;
     private bool playerIsAlive = true;
-    private bool playerIsFrozen = false; // use for cutscenes or scripted scences
 
     private GameObject bulletObject;
     private float chamberTime = 0;
